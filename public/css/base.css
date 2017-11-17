@@ -17,4 +17,12 @@ footer{
 }
 footer a{
     color: #333;
+    line-height: 25px;
+    font-size: 12px;
+}
+.body_content{
+    width: 1140px;
+}
+.body_width{
+    width: 1170px;
 }

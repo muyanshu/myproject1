@@ -1,6 +1,6 @@
 <header>
-    <nav class="container navbar-default">
-        <div class="container-fluid">
+    <nav class="container navbar-default body_width">
+        <div class="container-fluid body_width">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="/img/web/logo.png" height="30" alt=""></a>

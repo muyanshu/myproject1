@@ -1,4 +1,4 @@
-<footer class="container">
+<footer class="container body_width">
         <div  style="height:124px;">
             <a href="" target="_blank" rel="nofollow">关于我们</a> | <a href="" target="_blank" rel="nofollow">服务协议</a> | <a href="" target="_blank" rel="nofollow">隐私政策</a> | <a href="" target="_blank" rel="nofollow">开放平台</a> | <a href="" target="_blank" rel="nofollow">广告服务</a> | <a href="" target="_blank" rel="nofollow">商务洽谈</a> | <a href="" target="_blank" rel="nofollow">客服中心</a> | <a href="" target="_blank" rel="nofollow">网站导航</a> | <a href="" target="_blank" rel="nofollow">版权所有</a><br>
             <a href="" target="_blank" rel="nofollow">深圳举报中心</a> | <a href="" target="_blank" rel="nofollow">深圳公安局</a> | <a href="" target="_blank" rel="nofollow">抵制违法广告承诺书</a> | <a class="lchot" href="" target="_blank" rel="nofollow">阳光·绿色网络工程</a> | <a href="" target="_blank" rel="nofollow">版权保护投诉指引</a> | <a href="" target="_blank" rel="nofollow">广东省通管局</a><br>
