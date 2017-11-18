@@ -16,7 +16,7 @@
 <body>
 @include('web.head')
 <div class="container body_width">
-    <div class="carousel slide" style="height: 800px;border: solid 1px #333">
+    <div class="carousel slide" style="height: 500px;border: solid 1px #333">
         <div class="page-header">
             <h1>index</h1>
         </div>
