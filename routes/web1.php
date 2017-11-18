@@ -5,7 +5,7 @@ Route::get('index', "webController@index")->name('index');
 
 Route::get('about/{id?}', "webController@about")->name('about');
 
-Route::get('/list', "webController@list")->name('list');
+Route::get('/list', "webController@news")->name('list');
 
 Route::get('/piclist/{id?}', "webController@piclist")->name('piclist');
 
