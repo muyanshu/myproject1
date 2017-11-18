@@ -18,7 +18,7 @@
 <div class="container body_width">
     <div class="carousel slide" style="height: 500px;border: solid 1px #333">
         <div class="page-header">
-            <h1>index</h1>
+            <h1>index 999999 老师修改</h1>
         </div>
 
         <div class="page-header">
