@@ -25,7 +25,7 @@
             /*使产品图片铺满*/
             padding: 0 !important;
         }
-        .caption .num{
+        .num{
             float: right;
             color: #999;
             font-size: 8px;
