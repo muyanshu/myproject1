@@ -16,4 +16,7 @@ class webController extends Controller
     public function news(){
         return view('web.news');
     }
+    public function products(){
+        return view('web.products');
+    }
 }
