@@ -52,6 +52,11 @@
     <div class="row">
         <div class="col-sm-9">
             <div class="row">
+                <!--面包屑导航 start-->
+                <div class="breadcrumb">
+                    <h5><i class="glyphicon glyphicon-home"></i>&nbsp;<a href="#">首页</a>  &raquo; 全部陶瓷产品介绍</h5>
+                </div>
+                <!--面包屑导航 end-->
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                     <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
                     <div class="thumbnail">
