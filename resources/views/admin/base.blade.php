@@ -9,9 +9,8 @@
     <script src="{{asset('/js/jquery-form.js')}}"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
-    @yield("css")
-    @yield("js")
-    <title>@yield("title","智能慧教育后台管理")</title>
+
+    <title>@yield("title","后台管理")</title>
 </head>
 <body>
 @include("admin.header")
@@ -26,7 +25,5 @@
 </div>
 
 @include("admin.footer")
-
-@yield("jsbottom")
 </body>
 </html>
