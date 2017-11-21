@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    //首页
     public function index(){
-        return view('admin.base');
+        return view("admin.base");
     }
-
 }
