@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width,initial-scale=1.0" />
-    <title>简介页面---Resume</title>
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/base.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/index.css') }}"/>
-    <script src="{{asset('/js/jquery-1.12.min.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-    <style>
-        body{
-            padding-top:70px;
-        }
-    </style>
-    <script>
-        $(document).ready(function(){
-            $('#divCarousel').carousel({interval:2000});//每隔5秒自动轮播
-            $('.panel-title').click(function(){$(this).find('span').toggleClass('glyphicon-chevron-up')});
-        });
+@extends('web.base')
+{{--标题--}}
+@section('title')
+    简介
+@endsection
 
-    </script>
-</head>
-<body class="container">
+{{--主体内容--}}
+@section('content')
 <div class="row">
     <!--左栏 start-->
     <div class="col-sm-9">
@@ -229,6 +212,4 @@
     </div>
     <!--右栏 start-->
 </div>
-<footer class="navbar-default navbar-fixed-bottom text-center">版权信息</footer>
-</body>
-</html>
+@endsection

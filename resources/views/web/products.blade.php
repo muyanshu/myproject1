@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+@extends('web.base')
+{{--标题--}}
+@section('title')
+    商城
+    @endsection
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
+{{--主体内容--}}
+@section('content')
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
-    <script src="{{asset('/js/jquery-1.12.min.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-    <!--  [if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!--轮播图 start-->
     <style>
-        body {
-            padding-top: 50px;
-        }
+
         .thumbnail {
             /*使产品图片铺满*/
             padding: 0 !important;
@@ -47,8 +37,8 @@
             $("#a_pop").popover(); //点击，弹出查看详情对话框
         });
     </script>
-<body>
-<div class="container">
+
+
     <div class="row">
         <div class="col-sm-9">
             <div class="row">
@@ -292,6 +282,4 @@
     </div>
 </div>
 
-</body>
-
-</html>
+@endsection

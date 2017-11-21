@@ -1,30 +1,23 @@
+@extends('web.base')
+{{--标题--}}
+@section('title')
+    视频教程
+@endsection
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width,initial-scale=1.0" />
-    <title>新闻列表</title>
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/base.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/index.css') }}"/>
-    <script src="{{asset('/js/jquery-1.12.min.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+{{--主体内容--}}
+@section('content')
     <style>
-        body{
-            padding-top:70px;
-        }
         .num2{
             color: #BCD42A;
             margin-top:8px;
             text-align: left;
         }
     </style>
-</head>
+
 
     <h2>本网站采用H5的新技术，如想正常访问，请使用IE8以上浏览器，火狐浏览器最佳。</h2>
 
-<body class="container">
+
 <div class="row">
     <div class="col-sm-9">
         <!--面包屑导航 start-->
@@ -240,7 +233,4 @@
         </div>
     </div>
 </div>
-<footer class="navbar-default navbar-fixed-bottom text-center">版权信息</footer>
-</body>
-</html>
-
+@endsection
