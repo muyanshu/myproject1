@@ -34,7 +34,8 @@
     <script>
         $(document).ready(function() {
             $('#myCarousel').carousel({ interval: 2000 }); //每隔5秒自动轮播
-            $("#a_pop").popover(); //点击，弹出查看详情对话框
+            $(".a_pop").popover(); //点击，弹出查看详情对话框
+
         });
     </script>
 
@@ -47,6 +48,160 @@
                     <h5><i class="glyphicon glyphicon-home"></i>&nbsp;<a href="#">首页</a>  &raquo; 全部陶瓷产品介绍</h5>
                 </div>
                 <!--面包屑导航 end-->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
+                    <div class="thumbnail">
+                        <img src="{{asset('img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
+                        <div class="caption">
+                            <h4>vivo X9s Plus</h4>
+                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
+                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
+                            <br />
+                            <dd>
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
+                                <a href="#">货　号 CS-YP-184 </a><br />
+                            </dd><br />
+                            <p>
+                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
+                                <a href="#" class="btn btn-default" role="button">购买</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                     <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
                     <div class="thumbnail">
@@ -55,11 +210,11 @@
                             <h4>vivo X9s Plus</h4>
                             &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
                             <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
+                            <a href="javascript:void(0)" class="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
 										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
                             <br />
                             <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
+                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br /><span>市场价：¥</span><span class="novalid">802.50</span><br />
                                 <a href="#">货　号 CS-YP-184 </a><br />
                             </dd><br />
                             <p>
@@ -69,160 +224,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->
-                    <div class="thumbnail">
-                        <img src="{{asset('/img/products-pic/taoci1.jpg')}}" alt="..." class="img-responsive">
-                        <div class="caption">
-                            <h4>vivo X9s Plus</h4>
-                            &nbsp;&nbsp;"磁器"代窑器是由磁州窑产量最多所致。
-                            <font color="#fe0000">仿佳士得拍卖品，做工精细</font>
-                            <a href="javascript:void(0)" id="a_pop" data-placement="right" data-content="景德镇精品雍正款粉彩孔雀富贵瓶仿佳士得拍卖品，做工精细景德镇精
-										品雍正款粉彩孔雀富贵瓶" data-original-title="时间煮雨">...详情点击</a>
-                            <br />
-                            <dd>
-                                批发价：¥ <span style="color:#ff6700">539</span><em class="num"><span>3502</span>人已买 </em><br />市场价：¥ <span class="novalid">802.50</span><br />
-                                <a href="#">货　号 CS-YP-184 </a><br />
-                            </dd><br />
-                            <p>
-                                <a href="#" class="btn btn-info" role="button">加入购物车</a>
-                                <a href="#" class="btn btn-default" role="button">购买</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
 
         </div>
