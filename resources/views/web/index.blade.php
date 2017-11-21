@@ -1,9 +1,10 @@
-<!doctype html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('web.base')
+@section('title')
+    主页
+@endsection
+@section('content')
 
+<<<<<<< HEAD
     <title>学习项目</title>
 
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
@@ -95,11 +96,16 @@
                 </div>
             </div>
 
+=======
+        <div class="page-header">
+            <h1>index 999999 老师修改</h1>
+>>>>>>> ffc0ae790e4a0c8b56ea3290e97b44840f66e1a3
         </div>
 
         <div class="page-header">
             <h2>全国统一透明学费 - 明明白白消费</h2>
         </div>
+<<<<<<< HEAD
 
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -319,3 +325,8 @@
 @include('web.foot')
 </body>
 </html>
+=======
+@endsection
+
+
+>>>>>>> ffc0ae790e4a0c8b56ea3290e97b44840f66e1a3

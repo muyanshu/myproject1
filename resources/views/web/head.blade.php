@@ -1,3 +1,8 @@
+<style>
+    header{
+        margin-bottom: 15px;
+    }
+</style>
 <header>
     <nav class="container navbar-default body_width">
         <div class="container-fluid body_width">

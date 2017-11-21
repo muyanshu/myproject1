@@ -5,12 +5,12 @@ Route::get('index', "webController@index")->name('index');
 
 Route::get('about/{id?}', "webController@about")->name('about');
 
-Route::get('/list', "webController@list")->name('list');
+Route::get('/list', "webController@news")->name('list');
 
 Route::get('/piclist/{id?}', "webController@piclist")->name('piclist');
 
 Route::get('/products/{id?}', "webController@products")->name('products');
-
+Route::get('/video/{id?}',"webController@videoCourse");
 Route::get('content/{id?}', "webController@content")->name("content");
 
 Route::get('piclist', function ($id = 0) {
