@@ -64,9 +64,10 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane" id="home">
                                     {{--本视频详情 start--}}
-                                   <h4 class="text-center">Bootstrap快速入门第一课，只是帮大家快速了解，具体的后续深入学习，
+                                    <br /></br>
+                                   <h5 class="text-center">Bootstrap快速入门第一课，只是帮大家快速了解，具体的后续深入学习，
                                        可以在导航栏的视频教程观看。<a href="#">...深入视频详情点击</a>
-                                   </h4>
+                                   </h5>
                                     {{--本视频详情 end--}}
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="profile">
@@ -79,28 +80,26 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane active" id="messages">
                                     {{--学员评论 start--}}
-                                    <ul class="list-group">
+                                    <div class="container">
+                                    <div class="list-group">
                                             <h5 class="num2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文明上网，请客观
                                                 评价您观看视频后的感受，希望您提出宝贵的意见，您的反馈是我们前进的
                                                 动力！！
                                             </h5>
                                         {{--星星的动态效果 未实现 start--}}
-                                            <h3 class="text-center" id="stars">星星
-                                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                            </h3>
+
+                                        <form>
+                                            <input id="input-21e" value="0" type="text" class="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs"
+                                                   title="">
+                                        </form>
                                         {{--星星的动态效果 未实现 start--}}
-                                        <p class="text-center">
-                                        <textarea name="discuss" id="" cols="78%" rows="3"></textarea>
+                                        <p>
+                                        <textarea name="discuss" id="" cols="58%" rows="3"></textarea><a href="#">登录后才能评论</a>
                                         </p>
-                                        <li class="text-center">
-                                            <button type="button" class="btn btn-success">提交</button>
-                                            <button type="button" class="btn btn-info" onclick="javascript:location.reload();">重填</button>
-                                        </li>
-                                 </ul>
+                                        <button type="button" class="btn btn-success" style="margin-left:13%;">提交</button>
+                                        <button type="button" class="btn btn-info" onclick="javascript:location.reload();">重填</button>
+                                    </div>
+                                 </div>
                                 {{--学员评论 end--}}
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="settings">
@@ -111,7 +110,7 @@
                                         <b><span class="text-success">Laravel</span></b>
                                     </div>
                                     <!--Laravel进度条开始-->
-                                    <div class="col-sm-11">
+                                    <div class="col-sm-4">
                                         <div class="progress progress-striped active">
                                             <div class="progress-bar progress-bar-success" style="width: 52%;"></div>
                                         </div>
@@ -123,7 +122,7 @@
                                         <b><span class="text-info">PHP</span></b>
                                     </div>
                                     <!--PHP进度条开始-->
-                                    <div class="col-sm-11">
+                                    <div class="col-sm-4">
                                         <div class="progress progress-striped active">
                                             <div class="progress-bar progress-bar-info" style="width: 50%;"></div>
                                         </div>
@@ -135,7 +134,7 @@
                                         <b><span class="text-warning">MySql</span></b>
                                     </div>
                                     <!--MySql进度条开始-->
-                                    <div class="col-sm-11">
+                                    <div class="col-sm-4">
                                         <div class="progress progress-striped active">
                                             <div class="progress-bar progress-bar-warning" style="width: 53%;"></div>
                                         </div>

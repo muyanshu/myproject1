@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/css/base.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/css/index.css') }}"/>
-
+    <link rel="stylesheet" href="{{asset('/css/star-rating.css')}}">
     <script src="{{asset('/js/jquery-1.12.min.js')}}"></script>
     <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-
+    <script src="{{asset('/js/star-rating.js')}}"></script>
     <!--  [if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
