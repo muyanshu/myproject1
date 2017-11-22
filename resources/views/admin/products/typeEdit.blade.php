@@ -1,9 +1,10 @@
 @extends("admin.base")
 @section("main")
-        <!--面包屑导航 开始-->
+
+<!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品类型管理</a> &raquo; 添加产品类型
+    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品类型管理</a> &raquo; 类型编辑
 </div>
 <!--面包屑导航 结束-->
 <!--结果集标题与导航组件 开始-->
@@ -42,6 +43,32 @@
                 </td>
             </tr>
             <tr>
+                <th><i class="require">*</i>类型状态：</th>
+                <td>
+                    <input type="text" class="sm" name="">级
+                    <p>1：上架；2：下架</p>
+                </td>
+            </tr>
+            <tr>
+                <th><i class="require">*</i>类型外链：</th>
+                <td>
+                    <input type="text" class="lg" name="">
+                    <p>请输入外链地址</p>
+                </td>
+            </tr>
+            <tr>
+                <th><i class="require">*</i>图片地址：</th>
+                <td>
+                    <input type="text" class="lg" name="">
+                </td>
+            </tr>
+            <tr>
+                <th>描述：</th>
+                <td>
+                    <textarea name="discription"></textarea>
+                </td>
+            </tr>
+            <tr>
                 <th></th>
                 <td>
                     <input type="submit" value="提交">
@@ -52,4 +79,5 @@
         </table>
     </form>
 </div>
+
 @endsection

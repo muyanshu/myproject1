@@ -31,7 +31,6 @@
         <!--主体部分 开始-->
          <div class="main_box">
              @yield("main")
-
          </div>
         <!--主体部分 结束-->
 

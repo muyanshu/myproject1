@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+class OrderDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        return view("admin.products.type");
+        return view("admin.order.detailmanage");
     }
 
     /**
@@ -23,7 +23,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        return view("admin.products.typeAdd");
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        return view("admin.products.typeEdit");
+        return view("admin.order.detailedit");
     }
 
     /**

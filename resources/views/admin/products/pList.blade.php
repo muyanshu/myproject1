@@ -4,7 +4,7 @@
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品类型管理</a> &raquo; 管理
+    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品管理</a> &raquo; 管理
 </div>
 <!--面包屑导航 结束-->
 
@@ -39,7 +39,7 @@
         <!--快捷导航 开始-->
         <div class="result_content">
             <div class="short_wrap">
-                <a href="#"><i class="fa fa-plus"></i>新增类型</a>
+                <a href="#"><i class="fa fa-plus"></i>新增产品</a>
                 <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                 <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
             </div>
@@ -55,7 +55,8 @@
                     <th class="tc">排序</th>
                     <th class="tc">ID</th>
                     <th>标题</th>
-                    <th>发布人</th>
+                    <th>价格</th>
+                    <th>所属类型</th>
                     <th>更新时间</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -69,11 +70,12 @@
                     <td>
                         <a href="#">Apple iPhone 6 Plus (A1524) 16GB 金色 移动联通电信4G手机</a>
                     </td>
-                    <td>admin</td>
-                    <td>2014-03-15 21:11:01</td>
+                    <td>10</td>
+                    <td>初级</td>
+                    <td>2017-11-22 21:11:01</td>
                     <td>上架</td>
                     <td>
-                        <a href="/admin/productType/1/edit">修改</a>
+                        <a href="/admin/product/1/edit">修改</a>
                         <a href="#">删除</a>
                     </td>
                 </tr>
@@ -87,11 +89,12 @@
                     <td>
                         <a href="#">三星 SM-G5308W 白色 移动4G手机 双卡双待</a>
                     </td>
-                    <td>admin</td>
-                    <td>2014-03-15 21:11:01</td>
+                    <td>20</td>
+                    <td>中级</td>
+                    <td>2017-11-22 21:11:01</td>
                     <td>上架</td>
                     <td>
-                        <a href="/admin/productType/1/edit">修改</a>
+                        <a href="/admin/product/1/edit">修改</a>
                         <a href="#">删除</a>
                     </td>
                 </tr>
@@ -105,12 +108,12 @@
                     <td>
                         <a href="#">荣耀 6 (H60-L11) 3GB内存增强版 白色 移动4G手机</a>
                     </td>
-                    <td>admin</td>
-                    <td>2014-03-15 21:11:01</td>
-                    <td>上架</td>
-
+                    <td>30</td>
+                    <td>高级</td>
+                    <td>2017-11-22 21:11:01</td>
+                    <td>下架</td>
                     <td>
-                        <a href="/admin/productType/1/edit">修改</a>
+                        <a href="/admin/product/1/edit">修改</a>
                         <a href="#">删除</a>
                     </td>
                 </tr>
