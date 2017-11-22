@@ -3,24 +3,9 @@
         <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 添加商品
-</div>
+    <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo;</div>
 <!--面包屑导航 结束-->
 
-<!--结果集标题与导航组件 开始-->
-<div class="result_wrap">
-    <div class="result_title">
-        <h3>快捷操作</h3>
-    </div>
-    <div class="result_content">
-        <div class="short_wrap">
-            <a href="#"><i class="fa fa-plus"></i>新增文章</a>
-            <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-            <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
-        </div>
-    </div>
-</div>
-<!--结果集标题与导航组件 结束-->
 
 
 <div class="result_wrap">
@@ -33,7 +18,7 @@
                 <label>操作系统</label><span>WINNT</span>
             </li>
             <li>
-                <label>运行环境</label><span>Apache/2.2.21 (Win64) PHP/5.3.10</span>
+                <label>运行环境</label><span>Apache/2.2.21 (Win64) PHP/5.7.0</span>
             </li>
             <li>
                 <label>PHP运行方式</label><span>apache2handler</span>
@@ -65,7 +50,7 @@
     <div class="result_content">
         <ul>
             <li>
-                <label>官方交流网站：</label><span><a href="#">http://bbs.houdunwang.com</a></span>
+                <label>官方交流网站：</label><span><a href="#">http://baidu.com</a></span>
             </li>
             <li>
                 <label>官方交流QQ群：</label><span><a href="#"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png"></a></span>

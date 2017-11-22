@@ -3,7 +3,7 @@
         <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品管理</a> &raquo; 添加产品
+    <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo; <a href="#">产品管理</a> &raquo; 添加产品
 </div>
 <!--面包屑导航 结束-->
 <!--结果集标题与导航组件 开始-->
@@ -47,8 +47,7 @@
             <tr>
                 <th><i class="require">*</i>产品名称：</th>
                 <td>
-                    <input type="text" class="lg" name="">
-                    <p>请输入产品名称</p>
+                    <input type="text" class="lg" name="" placeholder="请输入产品类型名称">
                 </td>
             </tr>
             <tr>
@@ -74,7 +73,7 @@
             <tr>
                 <th>描述：</th>
                 <td>
-                    <textarea name="discription"></textarea>
+                    <textarea name="discription" id="content"></textarea>
                 </td>
             </tr>
             <tr>
@@ -88,4 +87,10 @@
         </table>
     </form>
 </div>
+
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content',{initialFrameWidth:1500,initialFrameHeight:210,});
+</script>
 @endsection

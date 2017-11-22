@@ -4,7 +4,7 @@
 <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">产品类型管理</a> &raquo; 类型编辑
+    <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo; <a href="#">产品类型管理</a> &raquo; 类型编辑
 </div>
 <!--面包屑导航 结束-->
 <!--结果集标题与导航组件 开始-->

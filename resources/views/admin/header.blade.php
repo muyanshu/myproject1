@@ -3,9 +3,9 @@
     <div class="top_left">
         <div class="logo">后台管理平台</div>
         <ul>
-            <li><a href="#" class="active">后台首页</a></li>
-            <li><a href="#">前台首页</a></li>
-            <li><a href="#">视频中心</a></li>
+            <li><a href="http://myproject1.com/admin" class="active">后台首页</a></li>
+            <li><a href="http://myproject1.com">前台首页</a></li>
+            <li><a href="http://myproject1.com/video/video">视频中心</a></li>
         </ul>
     </div>
     <div class="top_right">
