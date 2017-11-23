@@ -150,7 +150,7 @@
             <div class="panel-heading">个人信息</div>
             <!--个人信息主体 start-->
             <div class="panel-body">
-                <img src="{{asset('/img/brief-pic/pic-model.jpg')}}" class="img-responsive img-rounded img-thumbnail" alt="pic-me" />
+                <img src="{{asset('Model')}}" class="img-responsive img-rounded img-thumbnail" alt="pic-me" />
                 <p class="text-center text-primary">姓名</p>
                 <address>
                     <strong>联系我</strong><br /><br />
