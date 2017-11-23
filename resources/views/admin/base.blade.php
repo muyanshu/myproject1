@@ -11,6 +11,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="/css/ch-ui.admin.css">
+    <link rel="stylesheet" href="/css/permission.css">
     <link rel="stylesheet" href="/fonts/css/font-awesome.min.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/ch-ui.admin.js"></script>
