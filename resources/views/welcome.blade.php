@@ -1,3 +1,4 @@
+冲突产生的原因及解决方案。
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
