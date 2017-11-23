@@ -25,7 +25,7 @@
         <table class="add_tab">
             <tbody>
             <tr>
-                <th width="120"><i class="require">*</i>选择所属课程：</th>
+                <th width="150"><i class="require">*</i>所属课程：</th>
                 <td>
                     <select name="">
                         <option value="">==请选择==</option>
@@ -35,7 +35,7 @@
                 </td>
             </tr>
             <tr>
-                <th width="120"><i class="require">*</i>选择所属班级：</th>
+                <th><i class="require">*</i>所属班级：</th>
                 <td>
                     <select name="">
                         <option value="">==请选择==</option>
@@ -73,7 +73,7 @@
             <tr>
                 <th>描述：</th>
                 <td>
-                    <textarea name="discription" id="content"></textarea>
+                    <textarea name="discription" id="content" ></textarea>
                 </td>
             </tr>
             <tr>
@@ -91,6 +91,6 @@
 <script type="text/javascript">
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:1500,initialFrameHeight:210,});
+    UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:200,});
 </script>
 @endsection
