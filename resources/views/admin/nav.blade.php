@@ -32,8 +32,8 @@
         <li>
             <h3><i class="fa fa-fw fa-clipboard"></i>用户组管理</h3>
             <ul class="sub_menu">
-                <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>用户组添加</a></li>
-                <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>用户组管理</a></li>
+                <li><a href="/admin/role/create" target="main"><i class="fa fa-fw fa-plus-square"></i>用户组添加</a></li>
+                <li><a href="/admin/role" target="main"><i class="fa fa-fw fa-list-ul"></i>用户组管理</a></li>
             </ul>
         </li>
         <li>
