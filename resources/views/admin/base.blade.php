@@ -30,7 +30,7 @@
  {{--左边导航--}}
  @include("admin.nav")
         <!--主体部分 开始-->
-         <div class="main_box" style="hight:auto">
+         <div class="main_box" style="overflow:auto;">
              @yield("main")
          </div>
         <!--主体部分 结束-->
