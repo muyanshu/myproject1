@@ -76,7 +76,7 @@
                     <td>多买多优惠</td>
                     <td>
                         <a href="/admin/order/1/edit">修改</a>
-                        <a href="#">删除</a>
+                        <a href="#"  onclick="return confirm('删除后无法恢复，你确定要删除吗？');">删除</a>
                     </td>
                 </tr>
 
