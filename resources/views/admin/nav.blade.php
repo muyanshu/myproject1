@@ -1,99 +1,56 @@
-<div class="col-sm-3">
-    {{--订单管理--}}
-    <div class="panel panel-default" >
-        <div class="list-group-item active list-group-item-success" >
-            <h4 class="panel-title" >
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseOne" >
-                    订单管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse">
+<!--左侧导航 开始-->
+<div class="menu_box">
+    <ul>
+        <li>
+            <h3><i class="fa fa-fw fa-clipboard"></i>产品管理</h3>
+            <ul class="sub_menu">
+                <li><a href="/admin/product/create" target="main"><i class="fa fa-fw fa-plus-square"></i>产品添加</a></li>
+                <li><a href="/admin/product" target="main"><i class="fa fa-fw fa-list-ul"></i>产品管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-cog"></i>订单管理</h3>
+            <ul class="sub_menu">
+                <li><a href="/admin/order" target="main"><i class="fa fa-fw fa-cubes"></i>管理订单</a></li>
+                <li><a href="/admin/orderdetail" target="main"><i class="fa fa-fw fa-database"></i>订单详情</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-clipboard"></i>产品类型管理</h3>
+            <ul class="sub_menu">
+                <li><a href="/admin/productType/create" target="main"><i class="fa fa-fw fa-plus-square"></i>类型添加</a></li>
+                <li><a href="/admin/productType" target="main"><i class="fa fa-fw fa-list-ul"></i>类型管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-clipboard"></i>用户管理</h3>
+            <ul class="sub_menu">
+                <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>用户添加</a></li>
+                <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>用户管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-clipboard"></i>用户组管理</h3>
+            <ul class="sub_menu">
+                <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>用户组添加</a></li>
+                <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>用户组管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-clipboard"></i>用户权限管理</h3>
+            <ul class="sub_menu">
+                <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>权限添加</a></li>
+                <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>权限管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
+            <ul class="sub_menu">
+                <li><a href="#" target="main"><i class="fa fa-fw fa-cubes"></i>网站配置</a></li>
+                <li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>
+            </ul>
+        </li>
 
-                <a href="#" class="list-group-item">管理订单表</a>
-                <a href="#" class="list-group-item">订单明细表</a>
-
-        </div>
-    </div>
-
-    {{--产品管理--}}
-    <div class="panel panel-default">
-        <div class="list-group-item   list-group-item-info">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseTwo">
-                    产品管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <a href="#" class="list-group-item">产品添加</a>
-            <a href="#" class="list-group-item">产品管理</a>
-        </div>
-    </div>
-
-    {{--产品类型管理--}}
-    <div class="panel panel-default">
-        <div class="list-group-item   list-group-item-warning">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseThree">
-                    产品类型管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
-            <a href="/admin/productType/create" class="list-group-item">添加</a>
-            <a href="#" class="list-group-item">管理</a>
-        </div>
-    </div>
-
-    {{--用户管理--}}
-    <div class="panel panel-default">
-        <div class="list-group-item  list-group-item-danger">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseFour">
-                    用户管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <a href="#" class="list-group-item">添加</a>
-            <a href="#" class="list-group-item">管理</a>
-        </div>
-    </div>
-
-    {{--用户组管理--}}
-    <div class="panel panel-default">
-        <div class="list-group-item  list-group-item-success">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseFive">
-                    用户组管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFive" class="panel-collapse collapse">
-            <a href="#" class="list-group-item">添加</a>
-            <a href="#" class="list-group-item">管理</a>
-        </div>
-    </div>
-
-    {{--用户权限管理--}}
-    <div class="panel panel-default">
-        <div class="list-group-item active list-group-item-error">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseSix">
-                    用户权限管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseSix" class="panel-collapse collapse">
-            <a href="#" class="list-group-item">添加</a>
-            <a href="#" class="list-group-item">管理</a>
-        </div>
-    </div>
+    </ul>
 </div>
+<!--左侧导航 结束-->

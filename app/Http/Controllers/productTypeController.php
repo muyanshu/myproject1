@@ -13,7 +13,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-
+        return view("admin.products.type");
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("admin.products.typeEdit");
     }
 
     /**
