@@ -1,3 +1,4 @@
+张强提交冲突1!!
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
