@@ -33,3 +33,7 @@ Route::get("/alipay","AlipayController@index");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -12,12 +12,11 @@
     <![endif]-->
 
     <link rel="stylesheet" href="/css/ch-ui.admin.css">
-    <link rel="stylesheet" href="/css/permission.css">
     <link rel="stylesheet" href="/fonts/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="/css/bootstrap.min.css">--}}
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/ch-ui.admin.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    {{--<script type="text/javascript" src="js/bootstrap.min.js"></script>--}}
 
 
     {{--引用编辑器--}}
@@ -28,7 +27,7 @@
     <title>@yield("title","后台管理")</title>
     <style>
         .add_tab td{
-            width:120px !important;
+            width:150px !important;
         }
     </style>
 </head>
@@ -47,6 +46,5 @@
 
  {{--尾部--}}
  @include("admin.footer")
- @section("jsbottom")
 </body>
 </html>

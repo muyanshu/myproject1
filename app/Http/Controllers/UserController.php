@@ -15,9 +15,8 @@ class UserController extends Controller
 //    get方式  admin/user/
     public function index()
     {
-       $rs=User::all();//读取数据库中的所有数据。
-//        dd($rs);
-        return view('admin.users_msg.userAdd',compact('rs'));
+;
+        return view('admin.user.usermanage');
 
     }
 
@@ -28,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users_msg.userManage');
+        return view('admin.user.userAdd');
     }
 
     /**
@@ -61,7 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.user.userEdit');
     }
 
     /**
