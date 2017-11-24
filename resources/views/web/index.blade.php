@@ -1,16 +1,11 @@
-@include('web.base')
+@extends('web.base')
+{{--标题--}}
+@section('title')
+    首页
+@endsection
 
-    <title>学习项目</title>
-
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/base.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/css/index.css') }}"/>
-
-    <script src="{{asset('/js/jquery-1.12.min.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-</head>
-<body>
-@include('web.head')
+{{--主体内容--}}
+@section('content')
 <div class="container body_width">
     <div class="carousel slide" >
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -311,7 +306,4 @@
 
     </div>
 </div>
-@include('web.foot')
-</body>
-</html>
-
+@endsection
