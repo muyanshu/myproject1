@@ -12,6 +12,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="/css/ch-ui.admin.css">
+    <link rel="stylesheet" href="/css/permission.css">
     <link rel="stylesheet" href="/fonts/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
