@@ -30,3 +30,6 @@ Route::put('tasks/{task}', function (App\Task $task) {
 });
 
 Route::get("/alipay","AlipayController@index");
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
