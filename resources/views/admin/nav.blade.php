@@ -10,7 +10,7 @@
         </li>
         <li>
             <h3><i class="fa fa-fw fa-cog"></i>订单管理</h3>
-            <ul class="sub_menu">
+            <ul class="sub_menu" >
                 <li><a href="/admin/order" target="main"><i class="fa fa-fw fa-cubes"></i>管理订单</a></li>
                 <li><a href="/admin/orderdetail" target="main"><i class="fa fa-fw fa-database"></i>订单详情</a></li>
             </ul>
