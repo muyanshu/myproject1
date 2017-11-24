@@ -23,37 +23,35 @@
         <form action="#" method="post">
 
             {{--所属角色--}}
-
-            <table class="add_tab1">
-                <tbody>
-                <tr>
-                    <th><i class="require">*</i>权限描述：</th>
-                    <td>
-                        <input type="text" class="lg" name="" placeholder="请输入名称">
-                    </td>
-                </tr>
-                <tr>
-                    <th width="120"><i class="require">*</i>权限类型：</th>
-                    <td>
-                        <select name="">
-                            <option value="">==请选择==</option>
-                            <option value="19">开启</option>
-                            <option value="20">关闭</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th></th>
-                    <td>
-                        <input type="submit" value="确定添加">
-                        <input type="button" class="back" onclick="history.go(-1)" value="返回">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
+            <div class="result_wrap">
+                <form action="#" method="post">
+                    <table class="add_tab">
+                        <tbody>
+                        <tr>
+                            <th><i class="require">*</i>权限描述：</th>
+                            <td>
+                                <input type="text" class="md" name="" placeholder="请输入名称">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120"><i class="require">*</i>权限类型：</th>
+                            <td>
+                                <select name="">
+                                    <option value="">==请选择==</option>
+                                    <option value="19">开启</option>
+                                    <option value="20">关闭</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="提交">
+                                <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
         </form>
     </div>
 @endsection

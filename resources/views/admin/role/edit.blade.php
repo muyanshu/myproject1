@@ -20,48 +20,48 @@
     </div>
     <!--结果集标题与导航组件 结束-->
     <div class="result_wrap">
-        <form action="#" method="post">
-            <table class="add_tab">
-                <tbody>
-                <tr>
-                    <th><i class="require">*</i>名称：</th>
-                    <td>
-                        <input type="text" class="lg" name="" placeholder="请输入名称">
-                    </td>
-                </tr>
-                <tr>
-                    <th><i class="require">*</i>描述：</th>
-                    <td>
+    <form action="#" method="post">
+        <table class="add_tab">
+            <tbody>
+            <tr>
+                <th><i class="require">*</i>名称：</th>
+                <td>
+                    <input type="text" class="md" name="" placeholder="请输入名称">
+                </td>
+            </tr>
+
+            <tr>
+                <th><i class="require">*</i>用户数：</th>
+                <td>
+                    <input type="text" class="sm" name="" placeholder="请输入用户数">
+                </td>
+            </tr>
+            <tr>
+                <th width="120"><i class="require">*</i>状态：</th>
+                <td>
+                    <select name="">
+                        <option value="">==请选择==</option>
+                        <option value="19">开启</option>
+                        <option value="20">关闭</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><i class="require">*</i>描述：</th>
+                <td>
                         <textarea class="lg" rows="3" cols="20" name="" placeholder="请输入描述">
-                    描述12335
                    </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <th><i class="require">*</i>用户数：</th>
-                    <td>
-                        <input type="text" class="lg" name="" placeholder="请输入用户数">
-                    </td>
-                </tr>
-                <tr>
-                    <th width="120"><i class="require">*</i>状态：</th>
-                    <td>
-                        <select name="">
-                            <option value="">==请选择==</option>
-                            <option value="19">开启</option>
-                            <option value="20">关闭</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td>
-                        <input type="submit" value="确定修改">
-                        <input type="button" class="back" onclick="history.go(-1)" value="返回">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input type="submit" value="确定添加">
+                    <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
 @endsection
