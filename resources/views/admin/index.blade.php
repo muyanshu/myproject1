@@ -18,19 +18,19 @@
                 <label>操作系统</label><span>WINNT</span>
             </li>
             <li>
-                <label>运行环境</label><span>Apache/2.2.21 (Win64) PHP/5.7.0</span>
+                <label>运行环境</label><span>Nginx (Win64) PHP/7.0</span>
             </li>
             <li>
-                <label>PHP运行方式</label><span>apache2handler</span>
+                <label>PHP运行方式</label><span>Nginx+php7</span>
             </li>
             <li>
-                <label>静静设计-版本</label><span>v-0.1</span>
+                <label>版本</label><span>v-0.1</span>
             </li>
             <li>
                 <label>上传附件限制</label><span>2M</span>
             </li>
             <li>
-                <label>北京时间</label><span>2014年3月18日 21:08:24</span>
+                <label>北京时间</label><span>2017年11月22日 21:08:24</span>
             </li>
             <li>
                 <label>服务器域名/IP</label><span>localhost [ 127.0.0.1 ]</span>
@@ -50,7 +50,7 @@
     <div class="result_content">
         <ul>
             <li>
-                <label>官方交流网站：</label><span><a href="#">http://baidu.com</a></span>
+                <label>官方交流网站：</label><span><a href="#">http://www.myproject1.com</a></span>
             </li>
             <li>
                 <label>官方交流QQ群：</label><span><a href="#"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png"></a></span>

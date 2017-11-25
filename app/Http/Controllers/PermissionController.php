@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        return view("admin.products.type");
+        //
+        return view("admin.permission.list");
     }
 
     /**
@@ -23,12 +24,8 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        $data01 = array(
-            'kh_one' => "active",
-            'kh_block' => " style='display:block';",
-            'kh_two01' => " class='active'"
-        );
-        return view("admin.products.typeAdd");
+        //
+        return view("admin.permission.add");
     }
 
     /**
@@ -39,7 +36,7 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -61,7 +58,8 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        return view("admin.products.typeEdit");
+        //
+        return view("admin.permission.edit");
     }
 
     /**

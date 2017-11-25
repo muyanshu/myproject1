@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\User;
 use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+//    get方式  admin/user/
     public function index()
     {
-        return view("admin.products.type");
+;
+        return view('admin.user.usermanage');
+
     }
 
     /**
@@ -23,12 +27,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        $data01 = array(
-            'kh_one' => "active",
-            'kh_block' => " style='display:block';",
-            'kh_two01' => " class='active'"
-        );
-        return view("admin.products.typeAdd");
+        return view('admin.user.userAdd');
     }
 
     /**
@@ -39,7 +38,7 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -61,7 +60,7 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        return view("admin.products.typeEdit");
+        return view('admin.user.userEdit');
     }
 
     /**
