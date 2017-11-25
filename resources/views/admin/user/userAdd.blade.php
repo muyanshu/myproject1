@@ -8,7 +8,8 @@
 
     {{--用户添加  start --}}
 <div class="result_wrap">
-    <form action="#" method="post">
+    <form action="/admin/user" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
         <table class="add_tab">
             <tbody>
             <tr>
@@ -28,50 +29,50 @@
             <tr>
                 <th><i class="require">*</i>用户名：</th>
                 <td>
-                    <input type="text" class="sm" name="" placeholder="请输入产品类型名称">
+                    <input type="text" class="sm" name="name" placeholder="请输入用户名">
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>手机号码：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入手机号码">
+                    <input type="text" class="md" name="tel" placeholder="请输入手机号码">
                 </td>
             </tr>
 
             <tr>
                 <th><i class="require">*</i>QQ：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入QQ">
+                    <input type="text" class="md" name="qq" placeholder="请输入QQ">
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>昵称：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入昵称">
+                    <input type="text" class="md" name="nickname" placeholder="请输入昵称">
                 </td>
             </tr>
             <tr>
                 <th>姓名：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入真实姓名">
+                    <input type="text" class="md" name="realname" placeholder="请输入真实姓名">
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>Email：</th>
                 <td>
-                    <input type="text" class="md" name="">
+                    <input type="text" class="md" name="email">
                 </td>
             </tr>
             <tr>
                 <th>头像图片：</th>
                 <td>
-                    <input name="pics" type="file">
+                    <input name="photo" type="file">
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>密码：</th>
                 <td>
-                    <input type="text" class="md" name="">
+                    <input type="text" class="md" name="password">
                 </td>
             </tr>
             <tr>
