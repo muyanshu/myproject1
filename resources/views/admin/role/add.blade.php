@@ -20,26 +20,34 @@
     </div>
     <!--结果集标题与导航组件 结束-->
     <div class="result_wrap">
-        <form action="#" method="post">
+        <form action="/admin/role" method="post">
+
+
+            @if($errors->has("description"))
+            {{ $errors->first('description') }}
+            @endif
+            {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
                 <tr>
                     <th><i class="require">*</i>名称：</th>
                     <td>
-                        <input type="text" class="md" name="" placeholder="请输入名称">
+
+                        <input type="text" class="md" name="name" value="{{old('name')}}" placeholder="请输入名称">
+
+                        @if($errors->has("name"))
+                        <div style="color: red;">
+                            {{ $errors->first('name') }}
+                           </div>
+                        @endif
                     </td>
                 </tr>
 
-                <tr>
-                    <th><i class="require">*</i>用户数：</th>
-                    <td>
-                        <input type="text" class="sm" name="" placeholder="请输入用户数">
-                    </td>
-                </tr>
+
                 <tr>
                     <th width="120"><i class="require">*</i>状态：</th>
                     <td>
-                        <select name="">
+                        <select name="status">
                             <option value="">==请选择==</option>
                             <option value="19">开启</option>
                             <option value="20">关闭</option>
@@ -49,7 +57,7 @@
                 <tr>
                     <th><i class="require">*</i>描述：</th>
                     <td>
-                        <textarea class="lg" rows="3" cols="20" name="" placeholder="请输入描述">
+                        <textarea class="lg" rows="3" cols="20" name="description" placeholder="请输入描述">
                    </textarea>
                     </td>
                 </tr>

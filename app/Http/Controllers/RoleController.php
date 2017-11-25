@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
@@ -36,6 +37,29 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required|string|max:3',
+            'description' => 'required|string|max:100',
+
+        ],
+            [
+                "name.required"=>"用户名是必填字段",
+                "name.max"=>"用户名不能超过3个字",
+                "description.required"=>"描述必须填写"
+            ]
+        );
+        //laravel规定，当验证规则不通过，自动跳回到来源页面
+        //并且把错误放到 errors 数组里面带给来源页面
+
+
+        // 获取所有的方法 dd($request->all());
+        //只获取某个
+        $name = $request->input("name","默认值");
+        $status = $request->input("status","0");
+
+        //获取role中所有数据。
+
+        return 6666;
 
     }
 
