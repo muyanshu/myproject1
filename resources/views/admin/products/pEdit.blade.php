@@ -88,8 +88,8 @@
             <tr>
                 <th></th>
                 <td>
-                    <input type="submit" value="提交">
-                    <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                    <input type="submit" class="btn btn-primary" value="提交">
+                    <input type="button" class="btn" onclick="history.go(-1)" value="返回">
                 </td>
             </tr>
             </tbody>
@@ -103,6 +103,6 @@
 <script type="text/javascript">
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:1500,initialFrameHeight:210,});
+    UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:210,});
 </script>
 @endsection
