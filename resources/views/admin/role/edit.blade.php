@@ -56,8 +56,8 @@
             <tr>
                 <th></th>
                 <td>
-                    <input type="submit" value="确定添加">
-                    <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                    <input type="submit" class="btn btn-primary" value="确定添加">
+                    <input type="button" class="btn" onclick="history.go(-1)" value="返回">
                 </td>
             </tr>
             </tbody>

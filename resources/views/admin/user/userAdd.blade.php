@@ -8,77 +8,116 @@
 
     {{--用户添加  start --}}
 <div class="result_wrap">
-    <form action="#" method="post">
+    <form action="/admin/user" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
         <table class="add_tab">
             <tbody>
             <tr>
                 <th width="120"><i class="require">*</i>用户状态：</th>
                 <td>
                     <label for="nomal">
-                        <input type="radio" name="radio" id="nomal" value="option1" checked> 正常
+                        <input type="radio" name="status" id="nomal" value="1" checked> 正常
                     </label>
                     <label for="limit">
-                        <input type="radio" name="radio" id="limit" value="option2">禁止登录
+                        <input type="radio" name="status" id="limit" value="2">禁止登录
                     </label>
                     <label for="forever">
-                        <input type="radio" name="radio" id="forever" value="option2">终身vip
+                        <input type="radio" name="status" id="forever" value="3">终身vip
                     </label>
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>用户名：</th>
                 <td>
-                    <input type="text" class="sm" name="" placeholder="请输入产品类型名称">
+                    <input type="text" class="sm" name="name"  value="{{old('name')}}"  placeholder="请输入用户名" style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("name"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('name') }}
+                        </div>
+                    @endif
                 </td>
+
             </tr>
             <tr>
                 <th><i class="require">*</i>手机号码：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入手机号码">
+                    <input type="text" class="md" name="tel"  value="{{old('tel')}}" placeholder="请输入手机号码"  style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("tel"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('tel') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
 
             <tr>
-                <th><i class="require">*</i>QQ：</th>
+                <th>QQ：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入QQ">
+                    <input type="text" class="md" name="qq"  value="{{old('qq')}}" placeholder="请输入QQ"  style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("qq"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('qq') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>昵称：</th>
+                <th>昵称：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入昵称">
+                    <input type="text" class="md" name="nickname"  value="{{old('nickname')}}" placeholder="请输入昵称">
+
                 </td>
             </tr>
             <tr>
                 <th>姓名：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入真实姓名">
+                    <input type="text" class="md" name="realname"  value="{{old('realname')}}" placeholder="请输入真实姓名">
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>Email：</th>
                 <td>
-                    <input type="text" class="md" name="">
+                    <input type="text" class="md" name="email"  value="{{old('email')}}" style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("email"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th>头像图片：</th>
                 <td>
-                    <input name="pics" type="file">
+                    <input name="photo" type="file"  style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("photo"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('name') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>密码：</th>
                 <td>
-                    <input type="text" class="md" name="">
+                    <input type="password" class="md" name="password"  value="{{old('password')}}"  style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("password"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th></th>
                 <td>
-                    <input type="submit" value="提交">
-                    <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                    <input type="submit" class="btn btn-primary"  value="提交">
+                    <input type="button" class="btn  "   onclick="history.go(-1)" value="返回">
                 </td>
             </tr>
             </tbody>

@@ -37,7 +37,6 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
             'name' => 'required|string|max:3',
             'description' => 'required|string|max:100',
@@ -61,6 +60,7 @@ class RoleController extends Controller
         //获取role中所有数据。
 
         return 6666;
+
     }
 
     /**

@@ -9,6 +9,12 @@ Route::group(["prefix"=>"admin"],function(){
     Route::resource("role","RoleController");
     Route::resource("user","UserController");
     Route::resource("permission","PermissionController");
-    Route::resource("order","OrderController");
-    Route::resource("orderdetail","OrderDetailController") ;
+    Route::get("order","OrderController@index");
+    Route::post("orderdel","OrderController@destroy");
+    Route::get("orderedit/{order}","OrderController@edit");
+    Route::post("orderupdate","OrderController@update");
+    Route::get("orderdetail","OrderDetailController@index");
+    Route::post("detaildel","OrderDetailController@destroy");
+    Route::get("detailedit/{order}","OrderDetailController@edit");
+    Route::post("detailupdate","OrderDetailController@update");
 });

@@ -22,8 +22,8 @@
                     </select>
                 </td>
                 <th width="70">关键字:</th>
-                <td><input type="text" name="keywords" placeholder="关键字"></td>
-                <td><input type="submit" name="sub" value="查询"></td>
+                <td><input type="text" name="keywords" placeholder="请输入关键字"></td>
+                <td><input type="submit" class="btn btn-primary" name="sub" value="查询"></td>
             </tr>
         </table>
     </form>
@@ -39,7 +39,7 @@
         <!--快捷导航 开始-->
         <div class="result_content">
             <div class="short_wrap">
-                <a href="#"><i class="fa fa-plus"></i>新增用户</a>
+                <a href="/admin/user/create"><i class="fa fa-plus"></i>新增用户</a>
                 <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                 <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
             </div>
@@ -60,90 +60,56 @@
                     <th>邮箱</th>
                     <th>操作</th>
                 </tr>
+                {{--循环显示内容--}}
+                @foreach($rs as $v)
                 <tr>
-                    <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
+                    <td class="tc"><input type="checkbox" name="id[]" value="{{$v->id}}"></td>
                     <td class="tc">
-                        <input type="text" name="ord[]" value="0">
+                        <input type="text" name="ord[]" value="1">
                     </td>
-                    <td class="tc">59</td>
+                    <td class="tc">{{$v->id}}</td>
                     <td>
-                        <a href="#">Apple</a>
+                        <a href="#">{{$v->name}}</a>
                     </td>
-                    <td>123456789</td>
-                    <td>123456789@qq.com</td>
-                    <td>2017-11-22 21:11:01</td>
+                    <td>{{$v->tel}}</td>
+                    <td>{{$v->qq}}</td>
+                    <td>{{$v->email}}</td>
                     <td>
-                        <a href="/admin/user/1/edit">修改</a>
+                        <a href="/admin/user/{{$v->id}}/edit">修改</a>
                         <a href="#"  onclick="return confirm('删除后无法恢复，你确定要删除吗？');">删除</a>
                     </td>
                 </tr>
-
-                <tr>
-                    <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
-                    <td class="tc">
-                        <input type="text" name="ord[]" value="0">
-                    </td>
-                    <td class="tc">59</td>
-                    <td>
-                        <a href="#">三星</a>
-                    </td>
-                    <td>123456789</td>
-                    <td>123456789@qq.com</td>
-                    <td>2017-11-22 21:11:01</td>
-                    <td>
-                        <a href="/admin/product/1/edit">修改</a>
-                        <a href="#">删除</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
-                    <td class="tc">
-                        <input type="text" name="ord[]" value="0">
-                    </td>
-                    <td class="tc">59</td>
-                    <td>
-                        <a href="#">荣耀</a>
-                    </td>
-                    <td>123456789</td>
-                    <td>123456789@qq.com</td>
-                    <td>2017-11-22 21:11:01</td>
-                    <td>
-                        <a href="/admin/product/1/edit">修改</a>
-                        <a href="#">删除</a>
-                    </td>
-                </tr>
+                @endforeach
             </table>
+            {{--结束循环--}}
 
 
             <div class="page_nav">
-                <div>
-                    <a class="first" href="/wysls/index.php/Admin/Tag/index/p/1.html">第一页</a>
-                    <a class="prev" href="/wysls/index.php/Admin/Tag/index/p/7.html">上一页</a>
-                    <a class="num" href="/wysls/index.php/Admin/Tag/index/p/6.html">6</a>
-                    <a class="num" href="/wysls/index.php/Admin/Tag/index/p/7.html">7</a>
-                    <span class="current">8</span>
-                    <a class="num" href="/wysls/index.php/Admin/Tag/index/p/9.html">9</a>
-                    <a class="num" href="/wysls/index.php/Admin/Tag/index/p/10.html">10</a>
-                    <a class="next" href="/wysls/index.php/Admin/Tag/index/p/9.html">下一页</a>
-                    <a class="end" href="/wysls/index.php/Admin/Tag/index/p/11.html">最后一页</a>
-                    <span class="rows">11 条记录</span>
-                </div>
+
+                    {{--<a class="first" href="/wysls/index.php/Admin/Tag/index/p/1.html">第一页</a>--}}
+                    {{--<a class="prev" href="/wysls/index.php/Admin/Tag/index/p/7.html">上一页</a>--}}
+                    {{$rs->links()}}
+                    {{--<a class="next" href="/wysls/index.php/Admin/Tag/index/p/9.html">下一页</a>--}}
+                    {{--<a class="end" href="/wysls/index.php/Admin/Tag/index/p/11.html">最后一页</a>--}}
+                    {{--<span class="rows">11 条记录</span>--}}
+
             </div>
 
 
 
-            <div class="page_list">
-                <ul>
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </div>
+            {{--<div class="page_list">--}}
+                {{--{{$rs->links()}}--}}
+                {{--<ul>--}}
+
+                    {{--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+                    {{--<li class="active"><a href="#"></a></li>--}}
+                    {{--<li><a href="#">2</a></li>--}}
+                    {{--<li><a href="#">3</a></li>--}}
+                    {{--<li><a href="#">4</a></li>--}}
+                    {{--<li><a href="#">5</a></li>--}}
+                    {{--<li><a href="#">&raquo;</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
     </div>
 </form>
