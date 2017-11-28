@@ -24,6 +24,10 @@
     <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 
+    {{--引用bootstrap--}}
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/app.js"></script>
+
     <title>@yield("title","后台管理")</title>
     <style>
         .add_tab td{

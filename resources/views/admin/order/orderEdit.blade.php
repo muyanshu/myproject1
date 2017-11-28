@@ -13,13 +13,13 @@
         <table class="add_tab">
             <tbody>
             <tr>
-                <th width="120"><i class="require">*</i>订单编号名称：</th>
+                <th width="80"><i class="require">*</i>订单编号名称：</th>
                 <td>
                     2344512641
                 </td>
             </tr>
             <tr>
-                <th width="120"><i class="require">*</i>订购人：</th>
+                <th width="80"><i class="require">*</i>订购人：</th>
                 <td>
                    5
                 </td>
@@ -51,15 +51,17 @@
                     <textarea name="discription"></textarea>
                 </td>
             </tr>
-            <tr>
+            {{--<tr>
                 <th></th>
-                <td>
+                <td style="height: 100px;">
                     <input type="submit" value="提交">
                     <input type="button" class="back" onclick="history.go(-1)" value="返回">
                 </td>
-            </tr>
+            </tr>--}}
             </tbody>
         </table>
+        <div style="margin-left: 150px;margin-top: 20px;"><input type="submit" value="提交">
+        <input type="button" class="back" onclick="history.go(-1)" value="返回"></div>
     </form>
 </div>
 
