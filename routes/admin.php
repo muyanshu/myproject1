@@ -11,4 +11,5 @@ Route::group(["prefix"=>"admin"],function(){
     Route::resource("permission","PermissionController");
     Route::resource("order","OrderController");
     Route::resource("orderdetail","OrderDetailController") ;
+
 });

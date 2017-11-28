@@ -11,7 +11,7 @@ con<!--头部 开始-->
     <div class="top_right">
         <ul>
             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                    {{ Auth::user()->name }} <span class="caret"></span>
+                    {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                 </a></li>
             <li><a href="pass.html" target="main">修改密码</a></li>
             <li><a href="href="{{ route('logout') }}

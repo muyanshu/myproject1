@@ -44,8 +44,9 @@ class UserController extends Controller
             'name' => 'required|string|between:2,8',
             'tel'  => 'required|digits:11|unique:users,tel',
             'email'=>'required|email|unique:users,email',
-            'qq' => 'nullable','digits_between:8,10',
+            'qq' => 'nullable|digits_between:8,10',
             'password' => 'required|min:6',
+            'photo' => 'max:2000|nullable|image',
         ],
             [
                 "name.required"=> "用户名必须填写",
@@ -56,11 +57,38 @@ class UserController extends Controller
                 'email.required' => "邮箱必须填写",
                 'email.email'  => "邮箱格式不对",
                 'email.unique'  => "邮箱已经存在",
-                'qq.digits'    => "qq必须是8-10位数字",
+                'qq.digits_between'    => "qq必须是8-10位数字",
                 'password.required'=> "密码必须填写",
                 'password.min' => "密码需大于6位",
+                'photo.max' =>"头像大小最大2M",
+                'photo.image' =>"头像必须是图片（jpeg，jpg，gif，bmp）",
             ]
         );
+        /*图片上传处理
+         *
+         *
+         */
+        $file=$request->file('photo');//获取文件
+       // dd($file);
+        if($file->isValid()){ //判断是否存在
+            //$allow_extensions=['jpg','png','gif'];
+            //获取文件相关信息
+            $originalName=$file->getClientOriginalName(); //文件原名
+            $ext=$file->getClientOriginalExtension();    //扩展名
+            $realPath=$file->getRealPath(); //临时文件的绝对路径
+            $type=$file->getClientMimeType(); //image/jpeg
+            //上传文件
+            $filename=date('Y-m-d').'-'.uniqid().'.'.$ext;
+            $file->move(storage_path().'/app/uploads',$filename);
+            //使用新建的uploads本地存储空间
+           // $bool=Storage::disk('uploads')->put($filename,file_get_contents($realPath));
+//            var_dump($file);
+//            dd($file);
+        }
+
+
+
+
 //        接收数据并保存到数据库
         $users=new user();
         $users->name = $request->input("name");
@@ -69,9 +97,9 @@ class UserController extends Controller
         $users->email = $request->input("email");
         $users->nickname = $request->input("nickname","");
         $users->realname = $request->input("realname","");
-        $users->photo = $request->input("photo","");
+        $users->photo = $filename;
         $users->qq = $request->input("qq","");
-        $users->password = $request->input("password");
+        $users->password =md5($request->input("password")) ;
         $users->save();
         return "<script>alert('添加用户成功'); location.href='/admin/user';</script>";
 
@@ -95,9 +123,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('admin.user.userEdit');
+        return view('admin.user.userEdit',compact("user"));
     }
 
     /**
@@ -107,9 +135,49 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        //dd($request);
+            $id=$request->input("id");
+//        验证密码
+            $pass=$request->input("password");
+        if($pass){
+            $this->validate($request,['password' => 'min:6'],['password.min' => "密码必须大于6位"]);
+            $user->password = md5("$pass");
+        }
+//        验证规则
+            $this->validate($request,[
+                'name' => 'required|string|between:2,8',
+                'tel'  => 'required|digits:11|unique:users,tel,'.$id,
+                'email'=>'required|email|unique:users,email,'.$id,
+                'qq' => 'nullable|digits_between:8,10',
+                'photo' => 'max:2000|nullable|image',
+            ],
+                [
+                    "name.required"=> "用户名必须填写",
+                    "name.between" => "请输入2-8位的用户名",
+                    "tel.required" => "联系方式必须填写",
+                    "tel.digits"   => "联系方式不正确，请输入11位的号码",
+                    'email.required' => "邮箱必须填写",
+                    'email.email'  => "邮箱格式不对",
+                    'qq.digits_between' => "qq必须是8-10位数字",
+                    'photo.max' =>"头像大小最大2M",
+                    'photo.image' =>"头像必须是图片（jpeg，jpg，gif，bmp）",
+                ]
+            );
+        //        接收数据并保存到数据库
+       // dd($user);
+        $user->name = $request->input("name");
+        $user->status = $request->input("status");
+        $user->tel = $request->input("tel");
+        $user->email = $request->input("email");
+        $user->nickname = $request->input("nickname","");
+        $user->realname = $request->input("realname","");
+        $user->photo = $request->input("photo","");
+        $user->qq = $request->input("qq","");
+        $user->save();
+        return "<script>alert('修改用户成功'); location.href='/admin/user';</script>";
+
     }
 
     /**
@@ -118,8 +186,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        return $user->delete() ? "ture" : "false";
+        //return User::find($id)->delete() ? "ture":"false";
     }
 }
