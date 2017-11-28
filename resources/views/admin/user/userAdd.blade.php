@@ -29,7 +29,7 @@
             <tr>
                 <th><i class="require">*</i>用户名：</th>
                 <td>
-                    <input type="text" class="sm" name="name"  value="{{old('name')}}"  placeholder="请输入用户名" style="float:left;">
+                    <input type="text" class="sm" name="name"  value="{{old('name')}}"  placeholder="请输入名称" style="float:left;">
                     {{--表单验证规则--}}
                     @if($errors->has("name"))
                         <div style="color: red; float: left; height:23px;line-height: 30px;">
@@ -93,10 +93,11 @@
                 <th>头像图片：</th>
                 <td>
                     <input name="photo" type="file"  style="float:left;">
-                    {{--表单验证规则--}}
+
+                        {{--表单验证规则--}}
                     @if($errors->has("photo"))
                         <div style="color: red; float: left; height:23px;line-height: 30px;">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('photo') }}
                         </div>
                     @endif
                 </td>

@@ -6,9 +6,12 @@
         <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo; 修改用户资料
     </div>
 
-    {{--用户添加  start --}}
+    {{--用户修改  start --}}
 <div class="result_wrap">
-    <form action="#" method="post">
+    <form action="/admin/user/{{$user->id}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" value="{{$user->id}}" name="id">
+        {{csrf_field()}}
         <table class="add_tab">
             <tbody>
             <tr>
@@ -17,69 +20,94 @@
 
                 <td>
                     <label for="nomal">
-                        <input type="radio" name="radio" id="nomal" value="option1" checked> 正常
+                        <input type="radio" name="status" id="nomal" value="1" {{($user->status==1) ? "checked" : ""}}> 正常
                     </label>
                     <label for="limit">
-                        <input type="radio" name="radio" id="limit" value="option2">禁止登录
+                        <input type="radio" name="status" id="limit" value="2" {{($user->status==2) ? "checked" : ""}}>禁止登录
                     </label>
                     <label for="forever">
-                        <input type="radio" name="radio" id="forever" value="option2">终身vip
+                        <input type="radio" name="status" id="forever" value="3" {{($user->status==3) ? "checked" : ""}}>终身vip
                     </label>
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>用户名：</th>
                 <td>
-                    <input type="text" class="sm" name="" placeholder="用户名">
+                    <input type="text" class="sm" name="name" value="{{$user->name}}"  style="float:left;">
+                    @if($errors->has("name"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('name') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>手机号码：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入手机号码">
+                    <input type="text" class="md"  name="tel" value="{{$user->tel}}"  style="float:left;">
+                    @if($errors->has("tel"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('tel') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
 
             <tr>
-                <th><i class="require">*</i>QQ：</th>
+                <th>QQ：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入QQ">
+                    <input type="text" class="md" name="qq" value="{{$user->qq}}" style="float:left;">
+                    @if($errors->has("qq"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('qq') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>昵称：</th>
+                <th>昵称：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入昵称">
+                    <input type="text" class="md" name="nickname" value="{{$user->nickname}}" >
                 </td>
             </tr>
             <tr>
                 <th>姓名：</th>
                 <td>
-                    <input type="text" class="md" name="" placeholder="请输入真实姓名">
+                    <input type="text" class="md"  name="realname" value="{{$user->realname}}" >
                 </td>
             </tr>
             <tr>
                 <th><i class="require">*</i>Email：</th>
                 <td>
-                    <input type="text" class="md" name="">
+                    <input type="text" class="md" name="email" value="{{$user->email}}" style="float:left;">
+                    @if($errors->has("email"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
                 <th>头像图片：</th>
                 <td>
-                    <input name="pics" type="file">
+                    <input name="photo" type="file" style="float:left;">
+                    @if($user->photo != '')
+                        <img src="{{url("/storage/uploads")}}/{{$user->photo}}"  hight="50px" width="50px" style="float:left;" >
+                    @else
+                        暂无头像
+                    @endif
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>旧密码：</th>
+                <th><i class="require">*</i>密码：</th>
                 <td>
-                    <input type="text" class="md" name="">
-                </td>
-            </tr>
-            <tr>
-                <th><i class="require">*</i>新密码：</th>
-                <td>
-                    <input type="text" class="md" name="">
+                    <input type="password" class="md" name="password" value="" placeholder="留空表示不修改" style="float:left;">
+                    {{--表单验证规则--}}
+                    @if($errors->has("password"))
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -94,6 +122,7 @@
                     7.<input type="checkbox" name="">全栈班&nbsp&nbsp；
                 </td>
             </tr>
+
             <tr>
                 <th></th>
                 <td>

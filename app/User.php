@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
+
     public $roles = [];
     public $permission = [];
     public $resource = [];
@@ -89,6 +90,7 @@ class User extends Authenticatable
     public static function getNameById($id){
         return User::where("id",$id)->select("name","nickname","photo")->first();
     }
+
 
 
 }

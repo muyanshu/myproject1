@@ -64,3 +64,5 @@ function pic_minus(obj){
 
 
 
+
+
