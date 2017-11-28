@@ -79,7 +79,8 @@ class UserController extends Controller
             $type=$file->getClientMimeType(); //image/jpeg
             //上传文件
             $filename=date('Y-m-d').'-'.uniqid().'.'.$ext;
-            $file->move(storage_path().'/app/uploads',$filename);
+            $destinationPath = 'storage/uploads/'; //public 文件夹下面建软链接php artisan storage:link 然后放在 uploads 文件夹
+            $file->move($destinationPath ,$filename);
             //使用新建的uploads本地存储空间
            // $bool=Storage::disk('uploads')->put($filename,file_get_contents($realPath));
 //            var_dump($file);
@@ -125,6 +126,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
         return view('admin.user.userEdit',compact("user"));
     }
 
@@ -139,6 +141,7 @@ class UserController extends Controller
     {
         //dd($request);
             $id=$request->input("id");
+
 //        验证密码
             $pass=$request->input("password");
         if($pass){
@@ -188,7 +191,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        return $user->delete() ? "ture" : "false";
+        $file=$user->find('photo');//获取文件
+        //dd($file);
+        if($file){
+            if($file->isValid()){
+                $path=url('/storage/uploads/').$file;
+                unlink($path);
+                return $user->delete() ? "ture" : "false";
+            }else{
+                return $user->delete() ? "ture" : "false";
+              }
+        }else{
+            return $user->delete() ? "ture" : "false";
+        }
+        //return $user->delete() ? "ture" : "false";
         //return User::find($id)->delete() ? "ture":"false";
     }
 }

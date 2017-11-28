@@ -72,8 +72,8 @@
                     <td class="tc">{{$v->id}}</td>
                     <td><a href="#">{{$v->name}}</a></td>
                     <td>
-                        @if("$v->photo != ''")
-                            <img src="{{str_replace('\\','/',storage_path()).'/app/uploads/'}}{{$v->photo}}"  hight="60px" width="60px" >
+                        @if($v->photo != '')
+                            <img src="{{url("/storage/uploads")}}/{{$v->photo}}"  hight="50px" width="50px" >
                         @else
                             暂无头像
                         @endif

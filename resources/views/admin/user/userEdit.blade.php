@@ -90,7 +90,12 @@
             <tr>
                 <th>头像图片：</th>
                 <td>
-                    <input name="photo" type="file">
+                    <input name="photo" type="file" style="float:left;">
+                    @if($user->photo != '')
+                        <img src="{{url("/storage/uploads")}}/{{$user->photo}}"  hight="50px" width="50px" style="float:left;" >
+                    @else
+                        暂无头像
+                    @endif
                 </td>
             </tr>
             <tr>
