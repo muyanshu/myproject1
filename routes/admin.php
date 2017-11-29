@@ -8,6 +8,7 @@ Route::group(["prefix"=>"admin"],function(){
     Route::get("product/statusx/{id}","ProductController@statusx");
     Route::resource("role","RoleController");
     Route::resource("user","UserController");
+    Route::post("user/deleteAll","UserController@deleteAll");
     Route::resource("permission","PermissionController");
 
     Route::get("order","OrderController@index");

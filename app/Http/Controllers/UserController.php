@@ -16,9 +16,41 @@ class UserController extends Controller
 //    get方式  admin/user/
     public function index()
     {
-        $rs=user::orderBy("id","desc")->paginate(3);
-        return view('admin.user.usermanage',compact("rs"));
-
+        $user=new user();
+        $num=$user->count(); //统计总数
+        $cnt=3;
+        $max=ceil($num/$cnt); //最大值
+        $arr=range(1,$max);
+        $curr=isset($_GET['page'])?$_GET['page']:1;
+        $search1=request()->input("search",""); //查询
+        //dd($search);
+        if(in_array($curr,$arr)){ //分页
+            $left=max(1,$curr-1);
+            $right=min($left+2,$max);
+            $left=max(1,$right-2);
+            $page=[];
+            for($i=$left;$i<=$right;$i++){
+                $page[$i]="page=".$i;
+            }
+            $offset=($curr-1)*$cnt;
+            if($search1){  //数据查询like
+                $user=$user->Where('tel','like',"%$search1%")
+                    ->orWhere('name','like',"%$search1%")
+                    ->orWhere('email','like',"%$search1%");
+            }
+            $rs=$user->offset($offset)->limit($cnt)->get(); //分页显示
+            if($search1){
+                $search="search=$search1&";
+            }else{
+                $search="";
+            }
+            return view("admin.user.usermanage",compact("rs","curr","max","search","search1","page"));
+        }else{
+            return "<script>alert('已经没有页面了！'); location.href='/admin/user';</script>";
+        }
+        return view("admin.user.usermanage");
+//        $rs=user::orderBy("id","desc")->paginate(3);
+//        return view('admin.user.usermanage',compact("rs"));
     }
 
     /**
@@ -48,8 +80,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'photo' => 'max:2000|nullable|image',
         ],
-            [
-                "name.required"=> "用户名必须填写",
+            [   "name.required"=> "用户名必须填写",
                 "name.between" => "请输入2-8位的用户名",
                 "tel.required" => "联系方式必须填写",
                 "tel.digits"   => "联系方式不正确，请输入11位的号码",
@@ -64,47 +95,22 @@ class UserController extends Controller
                 'photo.image' =>"头像必须是图片（jpeg，jpg，gif，bmp）",
             ]
         );
-        /*图片上传处理
-         *
-         *
-         */
-        $file=$request->file('photo');//获取文件
-       // dd($file);
-        if($file->isValid()){ //判断是否存在
-            //$allow_extensions=['jpg','png','gif'];
-            //获取文件相关信息
-            $originalName=$file->getClientOriginalName(); //文件原名
-            $ext=$file->getClientOriginalExtension();    //扩展名
-            $realPath=$file->getRealPath(); //临时文件的绝对路径
-            $type=$file->getClientMimeType(); //image/jpeg
-            //上传文件
-            $filename=date('Y-m-d').'-'.uniqid().'.'.$ext;
-            $destinationPath = 'storage/uploads/'; //public 文件夹下面建软链接php artisan storage:link 然后放在 uploads 文件夹
-            $file->move($destinationPath ,$filename);
-            //使用新建的uploads本地存储空间
-           // $bool=Storage::disk('uploads')->put($filename,file_get_contents($realPath));
-//            var_dump($file);
-//            dd($file);
-        }
-
-
-
-
-//        接收数据并保存到数据库
         $users=new user();
+        $file=$request->file('photo');//获取文件
+        if($file) { //判断是否存在
+            $this->image($file,$users);//图片处理
+        }
+//        接收数据并保存到数据库
         $users->name = $request->input("name");
         $users->status = $request->input("status");
         $users->tel = $request->input("tel");
         $users->email = $request->input("email");
         $users->nickname = $request->input("nickname","");
         $users->realname = $request->input("realname","");
-        $users->photo = $filename;
         $users->qq = $request->input("qq","");
         $users->password =md5($request->input("password")) ;
         $users->save();
         return "<script>alert('添加用户成功'); location.href='/admin/user';</script>";
-
-
     }
 
     /**
@@ -115,7 +121,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -126,7 +132,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
         return view('admin.user.userEdit',compact("user"));
     }
 
@@ -139,9 +144,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //dd($request);
             $id=$request->input("id");
-
 //        验证密码
             $pass=$request->input("password");
         if($pass){
@@ -154,33 +157,33 @@ class UserController extends Controller
                 'tel'  => 'required|digits:11|unique:users,tel,'.$id,
                 'email'=>'required|email|unique:users,email,'.$id,
                 'qq' => 'nullable|digits_between:8,10',
-                'photo' => 'max:2000|nullable|image',
+                'photo' => 'max:255|nullable|image',
             ],
-                [
-                    "name.required"=> "用户名必须填写",
+                [   "name.required"=> "用户名必须填写",
                     "name.between" => "请输入2-8位的用户名",
                     "tel.required" => "联系方式必须填写",
                     "tel.digits"   => "联系方式不正确，请输入11位的号码",
                     'email.required' => "邮箱必须填写",
                     'email.email'  => "邮箱格式不对",
                     'qq.digits_between' => "qq必须是8-10位数字",
-                    'photo.max' =>"头像大小最大2M",
+                    'photo.max' =>"头像大小最大255",
                     'photo.image' =>"头像必须是图片（jpeg，jpg，gif，bmp）",
                 ]
             );
+        $file=$request->file('photo');//获取文件
+        if($file) { //判断是否存在
+            $this->uImg($file,$user);//图片更新处理
+        }
         //        接收数据并保存到数据库
-       // dd($user);
         $user->name = $request->input("name");
         $user->status = $request->input("status");
         $user->tel = $request->input("tel");
         $user->email = $request->input("email");
         $user->nickname = $request->input("nickname","");
         $user->realname = $request->input("realname","");
-        $user->photo = $request->input("photo","");
         $user->qq = $request->input("qq","");
         $user->save();
         return "<script>alert('修改用户成功'); location.href='/admin/user';</script>";
-
     }
 
     /**
@@ -191,20 +194,65 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $file=$user->find('photo');//获取文件
-        //dd($file);
+        $file=$user->photo;//获取图片
         if($file){
-            if($file->isValid()){
-                $path=url('/storage/uploads/').$file;
+                $path=public_path('storage/uploads/').$file;
                 unlink($path);
                 return $user->delete() ? "ture" : "false";
-            }else{
+            } else{
                 return $user->delete() ? "ture" : "false";
               }
-        }else{
-            return $user->delete() ? "ture" : "false";
-        }
-        //return $user->delete() ? "ture" : "false";
-        //return User::find($id)->delete() ? "ture":"false";
     }
+
+     /*图片上传处理
+      *
+      *
+      */
+    public function image($file,$user){
+            //获取文件相关信息
+            $originalName=$file->getClientOriginalName(); //文件原名
+            $ext=$file->getClientOriginalExtension();    //扩展名
+            $realPath=$file->getRealPath(); //临时文件的绝对路径
+            $type=$file->getClientMimeType(); //image/jpeg
+            //上传文件
+            $filename=date('Y-m-d').'-'.uniqid().'.'.$ext;
+            $destinationPath = 'storage/uploads/'; //public 文件夹下面建软链接php artisan storage:link 然后放在 uploads 文件夹
+            $rs=$file->move($destinationPath ,$filename);
+            return   $user->photo = $filename;
+    }
+
+     /*图片更新上传处理
+      *删除旧图片，替换新图片
+      *
+      */
+    public function uImg($file,$user){
+        $files=$user->photo;//获取图片
+        if($files){
+            $path=public_path('storage/uploads/').$files;
+            unlink($path);//删除原图片
+            $this->image($file,$user);
+        }
+    }
+
+    /*
+    * 批量删除功能
+    */
+    public  function  deleteAll(){
+
+        $id = input::post('id');
+        $str = explode(",",$id);
+        foreach($str as $v){
+            $user=DB::table('users')->where('id',"=","$v")->first();
+            $file=$user->photo;//获取图片
+            if($file){
+                $path=public_path('storage/uploads/').$file;
+                unlink($path);
+                 $user->delete();
+            } else{
+               $user->delete();
+            }
+       }
+        return  ture;
+    }
+
 }
