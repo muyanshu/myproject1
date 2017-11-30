@@ -22,32 +22,34 @@ class UserController extends Controller
         $max=ceil($num/$cnt); //最大值
         $arr=range(1,$max);
         $curr=isset($_GET['page'])?$_GET['page']:1;
+        $sname=request()->input("sname","");
         $search1=request()->input("search",""); //查询
-        //dd($search);
         if(in_array($curr,$arr)){ //分页
-            $left=max(1,$curr-1);
-            $right=min($left+2,$max);
-            $left=max(1,$right-2);
-            $page=[];
-            for($i=$left;$i<=$right;$i++){
-                $page[$i]="page=".$i;
-            }
-            $offset=($curr-1)*$cnt;
-            if($search1){  //数据查询like
-                $user=$user->Where('tel','like',"%$search1%")
-                    ->orWhere('name','like',"%$search1%")
-                    ->orWhere('email','like',"%$search1%");
-            }
-            $rs=$user->offset($offset)->limit($cnt)->get(); //分页显示
-            if($search1){
-                $search="search=$search1&";
+                $left=max(1,$curr-1);
+                $right=min($left+2,$max);
+                $left=max(1,$right-2);
+                $page=[];
+                for($i=$left;$i<=$right;$i++){
+                    $page[$i]="page=".$i;
+                }
+                $offset=($curr-1)*$cnt;
+                        if ($search1) {  //数据查询like
+                            if($sname){
+                                $user = $user->Where("$sname", 'like', "%$search1%");
+                            }else{
+                                return "<script>alert('请选择类型！'); location.href='/admin/user';</script>";
+                            }
+                     }
+                            $rs = $user->offset($offset)->limit($cnt)->get(); //分页显示
+                            if($search1){
+                            $search = "search=$search1&";
+                        } else {
+                            $search = "";
+                        }
+                        return view("admin.user.usermanage", compact("rs", "curr", "max", "search", "search1", "page"));
             }else{
-                $search="";
+                return "<script>alert('已经没有页面了！'); location.href='/admin/user';</script>";
             }
-            return view("admin.user.usermanage",compact("rs","curr","max","search","search1","page"));
-        }else{
-            return "<script>alert('已经没有页面了！'); location.href='/admin/user';</script>";
-        }
         return view("admin.user.usermanage");
 //        $rs=user::orderBy("id","desc")->paginate(3);
 //        return view('admin.user.usermanage',compact("rs"));
@@ -237,22 +239,29 @@ class UserController extends Controller
     /*
     * 批量删除功能
     */
-    public  function  deleteAll(){
+    public  function  deleteAll(Request $request){
+        $id = $request->input('str');
+        if($id){
+            $str = explode(",",$id);
+            $user=new user();
+            foreach($str as $v){
+                $users=$user->where('id',"=","$v")->first();
+                $file=$users->photo;//获取图片
+                if($file){
+                    $path=public_path('storage/uploads/').$file;
+                    unlink($path);
+                    $users->where('id',"=","$v")->delete();
+                } else{
+                    $users->where('id',"=","$v")->delete();
 
-        $id = input::post('id');
-        $str = explode(",",$id);
-        foreach($str as $v){
-            $user=DB::table('users')->where('id',"=","$v")->first();
-            $file=$user->photo;//获取图片
-            if($file){
-                $path=public_path('storage/uploads/').$file;
-                unlink($path);
-                 $user->delete();
-            } else{
-               $user->delete();
+                }
             }
-       }
-        return  ture;
+            return "ture";
+        }else{
+            return "false";
+        }
+
+
     }
 
 }

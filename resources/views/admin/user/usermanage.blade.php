@@ -15,17 +15,19 @@
         {{csrf_field()}}
         <table class="search_tab">
             <tr>
-                <th width="120">选择类型:</th>
+                <th width="120" >选择类型:</th>
                 <td>
-                    <select ">
-                        <option value="">全部</option>
-                        <option value="http://www.baidu.com">百度</option>
-                        <option value="http://www.sina.com">新浪</option>
+                    <select  name="sname">
+                        <option  value="">全部</option>
+                        <option value="name">用户名</option>
+                        <option value="id">ID</option>
+                        <option value="email">邮箱</option>
+                        <option value="tel">电话号码</option>
                     </select>
                 </td>
                 <th width="70">关键字:</th>
                 <td><input type="text"  name="search" placeholder="关键字" value="{{$search1}}"></td>
-                <td><input type="submit" class="btn btn-primary" name="sub" value="查询"></td>
+                <td><input type="submit" class="btn btn-primary" name="sub" id="sub" value="查询"></td>
             </tr>
         </table>
     </form>
@@ -59,7 +61,7 @@
                     <th class="tc">ID</th>
                     <th>用户名</th>
                     <th>头像缩略图</th>
-                    <th>手机</th>
+                    <th>电话号码</th>
                     <th>QQ</th>
                     <th>邮箱</th>
                     <th>操作</th>
@@ -157,44 +159,47 @@
             window.location.reload();
         }
     })
-    //批量修改相关
+
+    //全选功能
     $("#selectAll").change(function(){
         var flag = $(this).prop("checked");
         $('input[name="id"]').each(function(){
             $(this).prop("checked",flag);
         })
     });
-    //批量删除
+
+    //批量删除功能
     $("#deleteuser").click(function(){
-        var  id = $("input[name='id']");
-        length =id.length;
-        //alert(length);
-        var str ="";
-        for(var i=0;i<length;i++){
-            if(id[i].checked==true){
-                str =str+","+id[i].value;
-            }
-        }
-        $str= str.substr(1);
-        //alert($str);
-       // location.href="user/deleteAll?id="+str;
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
-        });
-        $.ajax({
-            url: '/admin/user/deleteAll',
-            type: "post",
-            data: {'id': $str},
-            success: function (data) {
-                alert(data);
-                if(data=="ture"){
-                    alert("删除用户成功 ");
-                }else{
-                    alert("删除用户失败");
+        if(confirm('删除后无法恢复，你确定要删除所中的用户吗？')) {
+            var id = $("input[name='id']");
+            length = id.length;
+            var str = "";
+            for (var i = 0; i < length; i++) {
+                if (id[i].checked == true) {
+                    str = str + "," + id[i].value;
                 }
             }
-        });
-        window.location.reload();
+            $str = str.substr(1); //存入数组中
+
+            $.ajaxSetup({
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}
+            });
+
+            $.ajax({  //ajax传递参数
+                url: '/admin/user/deleteAll',
+                type: "post",
+                data: {'str': $str},
+                success: function (data) {
+                    //alert(data);
+                    if (data == "ture") {
+                        alert("删除用户成功 ");
+                    } else {
+                        alert("删除用户失败，请查看是否有勾选！");
+                    }
+                }
+            });
+            window.location.reload();
+        }
     });
 
 </script>
