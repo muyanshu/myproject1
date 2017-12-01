@@ -187,6 +187,7 @@ class UserController extends Controller
         $user->nickname = $request->input("nickname","");
         $user->realname = $request->input("realname","");
         $user->qq = $request->input("qq","");
+        $user->expire = $request->input("expire","");
         $user->save();
         return "<script>alert('修改用户成功'); location.href='/admin/user';</script>";
     }

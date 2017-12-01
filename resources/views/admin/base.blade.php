@@ -18,7 +18,7 @@
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/ch-ui.admin.js"></script>
     {{--<script type="text/javascript" src="js/bootstrap.min.js"></script>--}}
-
+    @yield("css")
     {{--引用编辑器--}}
     <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
@@ -46,5 +46,6 @@
 
  {{--尾部--}}
  @include("admin.footer")
+ @yield("jsbottom")
 </body>
 </html>

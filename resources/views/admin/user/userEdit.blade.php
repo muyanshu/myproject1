@@ -1,4 +1,8 @@
 @extends("admin.base")
+
+@section("css")
+    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}">
+    @endsection
 @section("main")
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
@@ -111,6 +115,12 @@
                 </td>
             </tr>
             <tr>
+                <th><i class="require">*</i>VIP到期时间：</th>
+               <td><input    name="expire" id="datepicker" class="md" type="text" value="{{$user->expire}}"  >
+               </td>
+            </tr>
+
+            <tr>
                 <th><i class="require">*</i>所属角色：</th>
                 <td>
                     <div style="width: 500px">
@@ -137,4 +147,14 @@
     </form>
 </div>
 
+@endsection
+@section("jsbottom")
+    <script src="{{asset('/js/jquery-ui.min.js')}}"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        } );
+    </script>
 @endsection

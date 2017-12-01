@@ -76,6 +76,13 @@ function del(data){
 		});
 		window.location.reload();
 	}
+	//日期选择器
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			changeMonth: true,
+			changeYear: true
+		});
+	});
 
 
 }
