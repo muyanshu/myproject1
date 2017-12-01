@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,7 +41,7 @@ class UserController extends Controller
                                 return "<script>alert('请选择类型！'); location.href='/admin/user';</script>";
                             }
                      }
-                            $rs = $user->offset($offset)->limit($cnt)->get(); //分页显示
+                            $rs = $user->offset($offset)->orderBy('id','desc')->limit($cnt)->get(); //分页显示
                             if($search1){
                             $search = "search=$search1&";
                         } else {
@@ -134,7 +135,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.userEdit',compact("user"));
+        $role = Role::all();
+        //$roles = $user->getRoles();
+        return view('admin.user.userEdit',compact("user","role"));
     }
 
     /**

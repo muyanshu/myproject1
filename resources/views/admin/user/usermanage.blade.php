@@ -88,12 +88,13 @@
                     <td>{{$v->email}}</td>
                     <td>
                         <a href="/admin/user/{{$v->id}}/edit">修改</a>
-                        <a class="delEvent" href="#"   id="{{$v->id}}btn">删除</a>
+                        <a class="delEvent" href="#"    value="{{$v->id}}"  onclick="del('user-{{$v->id}}')">删除</a>
                     </td>
                 </tr>
                 @endforeach
             </table>
             {{--结束循环--}}
+            {{--分页开始--}}
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li>
@@ -139,27 +140,6 @@
 </form>
 
 <script>
-    $id = 0;
-    $(".delEvent").click(function () {
-        $id = parseInt(this.id);
-        if(confirm('删除后无法恢复，你确定要删除吗？')){
-            $.ajax({
-                url: '/admin/user/'+$id,
-                type: "delete",
-                data: {'_token': $('input[name=_token]').val()},
-                success: function (data) {
-                    //alert(data);
-                    if(data=="ture"){
-                        alert("删除用户成功 ");
-                    }else{
-                        alert("删除用户失败");
-                    }
-                }
-            });
-            window.location.reload();
-        }
-    })
-
     //全选功能
     $("#selectAll").change(function(){
         var flag = $(this).prop("checked");

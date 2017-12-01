@@ -21,11 +21,6 @@
     <!--结果集标题与导航组件 结束-->
     <div class="result_wrap">
         <form action="/admin/role" method="post">
-
-
-            @if($errors->has("description"))
-            {{ $errors->first('description') }}
-            @endif
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
@@ -33,10 +28,10 @@
                     <th><i class="require">*</i>名称：</th>
                     <td>
 
-                        <input type="text" class="md" name="name" value="{{old('name')}}" placeholder="请输入名称">
+                        <input type="text" class="md" name="name" value="{{old('name')}}" placeholder="请输入名称"  style="float:left;">
 
                         @if($errors->has("name"))
-                        <div style="color: red;">
+                        <div style="color: red; float: left; height:23px;line-height: 30px;">
                             {{ $errors->first('name') }}
                            </div>
                         @endif
@@ -47,18 +42,26 @@
                 <tr>
                     <th width="120"><i class="require">*</i>状态：</th>
                     <td>
-                        <select name="status">
-                            <option value="">==请选择==</option>
-                            <option value="19">开启</option>
-                            <option value="20">关闭</option>
+                        <select name="status"  style="float:left;">
+                            <option value="1" selected="selsected" style="color:limegreen">开启</option>
+                            <option value="0" style="color:red">关闭</option>
                         </select>
+                        @if($errors->has("status"))
+                            <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                {{ $errors->first('status') }}
+                            </div>
+                        @endif
                     </td>
                 </tr>
                 <tr>
                     <th><i class="require">*</i>描述：</th>
                     <td>
-                        <textarea class="lg" rows="3" cols="20" name="description" placeholder="请输入描述">
-                   </textarea>
+                        <textarea  value="{{old('name')}}" name="description" placeholder="请输入描述"  style="float:left;"></textarea>
+                        @if($errors->has("description"))
+                            <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                {{ $errors->first('description') }}
+                            </div>
+                        @endif
                     </td>
                 </tr>
                 <tr>

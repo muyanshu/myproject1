@@ -6,9 +6,11 @@ Route::group(["prefix"=>"admin"],function(){
     Route::resource("product","ProductController");
     Route::post("product/batchUpdate","ProductController@batchUpdate");
     Route::get("product/statusx/{id}","ProductController@statusx");
+    Route::post("role/deleteAll","RoleController@deleteAll");
     Route::resource("role","RoleController");
-    Route::resource("user","UserController");
     Route::post("user/deleteAll","UserController@deleteAll");
+    Route::resource("user","UserController");
+
     Route::resource("permission","PermissionController");
 
     Route::get("order","OrderController@index");

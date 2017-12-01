@@ -36,13 +36,6 @@ $(function(){
 	});
 });
 
-//列表页点击全选按钮
-//$(function(){
-//	$('.list_tab').find('tr').find('[type=checkbox]').click(function(){
-//		$('.list_tab').find('td').find('[type=checkbox]').prop('checked',$(this).prop('checked'));
-//	});
-//})
-
 //删除图片列表
 function del_pic(obj){
 	$(obj).parents('li').remove();
@@ -60,6 +53,31 @@ function pic_plus(obj){
 //删除图片上传框
 function pic_minus(obj){
 	$(obj).parents('li').remove();
+}
+
+//删除功能
+function del(data){
+	var arr = data.split('-');
+	//alert(arr[0]);
+	//alert(arr[1]);
+	if(confirm('删除后无法恢复，你确定要删除吗？')){
+		$.ajax({
+			url: '/admin/'+arr[0]+'/'+arr[1],
+			type: "delete",
+			data: {'_token': $('input[name=_token]').val()},
+			success: function (data) {
+				//alert(data);
+				if(data=="ture"){
+					alert("删除用户成功 ");
+				}else{
+					alert("删除用户失败");
+				}
+			}
+		});
+		window.location.reload();
+	}
+
+
 }
 
 
