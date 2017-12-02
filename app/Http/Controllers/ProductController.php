@@ -254,7 +254,7 @@ class ProductController extends Controller
             // 上传文件
             $filename = date('Y')  . uniqid() . '.' . $ext;
             // 使用我们新建的uploads本地存储空间（目录）
-            $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+            $bool = Storage::disk('uploads_img')->put($filename, file_get_contents($realPath));
 
             $pic="uploads/".$filename;
             return json_encode($pic);

@@ -45,8 +45,9 @@
                 <th></th>
                 <td>
                     {{csrf_field()}}
-                    <input type="submit" value="提交">
+                    <input type="submit" class="btn btn-primary" value="提交">
                     <input type="button" class="back" onclick="history.go(-1)" value="返回">
+
                 </td>
             </tr>
             </tbody>

@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -49,8 +49,15 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'tel' => 'required|digits:11|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|between:3,32|confirmed',
+        ],[
+            "tel.digits"=>"手机号码必须是11位数字",
+            "tel.unique"=>"手机号已经注册过",
+            "password.min"=>"密码3-32位之间",
+            "email.unique"=>"邮箱已经被占用",
+
         ]);
     }
 
@@ -64,6 +71,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'tel'=>$data['tel'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

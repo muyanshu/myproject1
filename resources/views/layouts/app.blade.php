@@ -19,9 +19,9 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -49,6 +49,7 @@
                         @else
                             <li class="dropdown">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -61,6 +62,13 @@
 
                                 <ul class="dropdown-menu" role="menu">
 >>>>>>> 0d3b4b9df5b77ec3e6c80baadc2e13a950c47cb1
+=======
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+>>>>>>> b984e2989ec186b2154a37dea6f51de3e0276ea0
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

@@ -37,13 +37,10 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        $data01 = array(
-            'kh_one' => "active",
-            'kh_block' => " style='display:block';",
-            'kh_two01' => " class='active'"
-        );
         $rs = ProductType::getOneClass();
         return view("admin.products.typeAdd",compact("rs"));
+
+
     }
 
     /**

@@ -29,8 +29,10 @@
                     </select>
                 </td>
                 <th width="70">关键字:</th>
+
                 <td><input type="text" name="keywords" placeholder="关键字" value="@if(!empty($keywords)){{$keywords}}@endif"></td>
-                <td><input type="submit" name="sub" value="查询"></td>
+                <td><input type="submit"  class="btn btn-primary" name="sub" value="查询"></td>
+
             </tr>
         </table>
         {{csrf_field()}}
