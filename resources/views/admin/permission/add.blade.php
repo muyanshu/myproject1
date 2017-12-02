@@ -19,28 +19,46 @@
         </div>
     </div>
     <!--结果集标题与导航组件 结束-->
-    <div class="result_wrap">
-        <form action="#" method="post">
 
-            {{--所属角色--}}
             <div class="result_wrap">
-                <form action="#" method="post">
+                <form action="/admin/permission" method="post">
+                    {{csrf_field()}}
                     <table class="add_tab">
                         <tbody>
                         <tr>
                             <th><i class="require">*</i>权限描述：</th>
                             <td>
-                                <input type="text" class="md" name="" placeholder="请输入名称">
+                                <input type="text" class="md" name="{{old('name')}}" placeholder="请输入名称">
+                                @if($errors->has("name"))
+                                    <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         <tr>
-                            <th width="120"><i class="require">*</i>权限类型：</th>
+                            {{--<th width="120"><i class="require">*</i>权限类型：</th>--}}
+                            <td class="sd" style="left:50px;">
+                            <td><select name="resource_id">
+                                    <option value="-1">所有资源类型</option>
+                                    <?php
+                                    echo App\ProductType::getSortOption();
+                                    ?>
+                                </select></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require">*</i>所属角色：</th>
                             <td>
-                                <select name="">
-                                    <option value="">==请选择==</option>
-                                    <option value="19">开启</option>
-                                    <option value="20">关闭</option>
-                                </select>
+                                <div style="width: 400px">
+                                    @foreach($role as $v)
+                                        @if($v->status=="1")
+                                            {{$v->id}}&nbsp;<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}">
+                                            {{$v->name}};&nbsp&nbsp
+                                        @endif
+                                    @endforeach
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
