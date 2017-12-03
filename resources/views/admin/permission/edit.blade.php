@@ -3,7 +3,7 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo; <a href="/admin/permission">用户权限管理</a> &raquo; 修改用户权限
+        <i class="fa fa-home"></i> <a href="http://myproject1.com/admin">首页</a> &raquo; <a href="/admin/permission">用户权限管理</a> &raquo; 添加用户权限
     </div>
     <!--面包屑导航 结束-->
     <!--结果集标题与导航组件 开始-->
@@ -19,39 +19,57 @@
         </div>
     </div>
     <!--结果集标题与导航组件 结束-->
-    <div class="result_wrap">
-        <form action="#" method="post">
 
-            {{--所属角色--}}
-            <div class="result_wrap">
-                <form action="#" method="post">
-                    <table class="add_tab">
-                        <tbody>
-                        <tr>
-                            <th><i class="require">*</i>权限描述：</th>
-                            <td>
-                                <input type="text" class="md" name="" placeholder="请输入名称">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="120"><i class="require">*</i>权限类型：</th>
-                            <td>
-                                <select name="">
-                                    <option value="">==请选择==</option>
-                                    <option value="19">开启</option>
-                                    <option value="20">关闭</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td>
-                                <input type="submit" value="提交">
-                                <input type="button" class="back" onclick="history.go(-1)" value="返回">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div class="result_wrap">
+        <form action="/admin/permission/{{$permission->id}}" method="post">
+            {{csrf_field()}}
+            <table class="add_tab">
+                <tbody>
+                <tr>
+                    <th><i class="require">*</i>权限描述：</th>
+                    <td>
+                        <input type="text" class="md" name="{{old('name')}}" placeholder="请输入名称">
+                        @if($errors->has("name"))
+                            <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                {{ $errors->first('name') }}
+                            </div>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    {{--<th width="120"><i class="require">*</i>权限类型：</th>--}}
+                    <td class="sd" style="left:50px;">
+                    <td><select name="resource_id">
+                            <option value="-1">所有资源类型</option>
+                            <?php
+                            echo App\ProductType::getSortOption($permission->resource_id);
+                            ?>
+                        </select></td>
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="require">*</i>所属角色：</th>
+                    <td>
+                        <div style="width: 400px">
+                            @foreach($role as $v)
+                                @if($v->status=="1")
+                                    {{$v->id}}&nbsp;<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}">
+                                    {{$v->name}};&nbsp&nbsp
+                                @endif
+                            @endforeach
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input type="submit" value="提交">
+                        <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </form>
     </div>
 @endsection

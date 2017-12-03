@@ -66,6 +66,16 @@ return [
             //'root' => public_path('uploads'),
         ],
 
+        // 新建一个本地端uploads空间（目录） 用于存储上传的文件
+        'uploads_img' => [
+
+            'driver' => 'local',
+
+            // 文件将上传到public/uploads目录
+            'root' => base_path('public/uploads'),
+
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

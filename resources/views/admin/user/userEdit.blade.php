@@ -1,4 +1,8 @@
 @extends("admin.base")
+
+@section("css")
+    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}">
+    @endsection
 @section("main")
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
@@ -111,15 +115,23 @@
                 </td>
             </tr>
             <tr>
+                <th><i class="require">*</i>VIP到期时间：</th>
+               <td><input    name="expire" id="datepicker" class="md" type="text" value="{{$user->expire}}"  >
+               </td>
+            </tr>
+
+            <tr>
                 <th><i class="require">*</i>所属角色：</th>
                 <td>
-                    1.<input type="checkbox" name="">总管理员&nbsp&nbsp；
-                    2.<input type="checkbox" name="">前端vip&nbsp&nbsp；
-                    3.<input type="checkbox" name="">前端基础班&nbsp&nbsp；
-                    4.<input type="checkbox" name="">前端高级班&nbsp&nbsp；</br>
-                    5.<input type="checkbox" name="">后台基础班&nbsp&nbsp；
-                    6.<input type="checkbox" name="">后台高级班&nbsp&nbsp；
-                    7.<input type="checkbox" name="">全栈班&nbsp&nbsp；
+                    <div style="width: 500px">
+                        @foreach($role as $v)
+                            @if($v->status=="1")
+                            {{$v->id}}.<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}">
+                                {{$v->name}};&nbsp&nbsp
+                            @endif
+                        @endforeach
+                    </div>
+
                 </td>
             </tr>
 
@@ -135,4 +147,14 @@
     </form>
 </div>
 
+@endsection
+@section("jsbottom")
+    <script src="{{asset('/js/jquery-ui.min.js')}}"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        } );
+    </script>
 @endsection

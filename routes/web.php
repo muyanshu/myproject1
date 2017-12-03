@@ -30,4 +30,6 @@ Route::put('tasks/{task}', function (App\Task $task) {
 });
 
 
+Route::get("/alipay","AlipayController@index");
+
 

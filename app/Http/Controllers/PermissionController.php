@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Permission;
+use App\Role;
+use App\RolePermission;
+use App\RoleUser;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -14,6 +17,40 @@ class PermissionController extends Controller
     public function index()
     {
         //
+        $role=new role();
+        $num=$role->count(); //统计总数
+        $cnt=3;
+        $max=ceil($num/$cnt); //最大值
+        $arr=range(1,$max);
+        $curr=isset($_GET['page'])?$_GET['page']:1;
+        $sname=request()->input("sname","");
+        $search1=request()->input("search",""); //查询
+        if(in_array($curr,$arr)){ //分页
+            $left=max(1,$curr-1);
+            $right=min($left+2,$max);
+            $left=max(1,$right-2);
+            $page=[];
+            for($i=$left;$i<=$right;$i++){
+                $page[$i]="page=".$i;
+            }
+            $offset=($curr-1)*$cnt;
+            if ($search1) {  //数据查询like
+                if($sname){
+                    $role = $role->Where("$sname", 'like', "%$search1%");
+                }else{
+                    return "<script>alert('请选择类型！'); location.href='/admin/permission';</script>";
+                }
+            }
+            $rs = $role->offset($offset)->orderBy('id','desc')->limit($cnt)->get(); //分页显示
+            if($search1){
+                $search = "search=$search1&";
+            } else {
+                $search = "";
+            }
+            return view("admin.permission.list", compact("rs", "curr", "max", "search", "search1", "page"));
+        }else{
+            return "<script>alert('已经没有页面了！'); location.href='/admin/permission';</script>";
+        }
         return view("admin.permission.list");
     }
 
@@ -25,7 +62,9 @@ class PermissionController extends Controller
     public function create()
     {
         //
-        return view("admin.permission.add");
+
+       $role = Role::all();
+        return view("admin.permission.add",compact("role"));
     }
 
     /**
@@ -37,6 +76,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -56,10 +96,12 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
         //
-        return view("admin.permission.edit");
+        $role = Role::all();
+        $roles = $permission->getRoles();
+        return view("admin.permission.edit",compact("role","roles","permission"));
     }
 
     /**
