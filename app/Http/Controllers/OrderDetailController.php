@@ -134,6 +134,14 @@ class OrderDetailController extends Controller
         }
     }
 
+    public function batchUpdate(Request $request)
+    {
+        //LOG:info($request);
+        $dt=$request->input("dt");
+        $dt=array_filter($dt);
+
+    }
+
     public function myRedirect($url,$msg){
         echo "<script>
                 alert('$msg');

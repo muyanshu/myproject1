@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Storage;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -133,6 +137,27 @@ class OrderController extends Controller
         }else{
             return "删除失败";
         }
+    }
+
+    public function obatchUpdate(Request $request)
+    {
+        //LOG:info($request);
+        $rs=$request->input("dt");
+        $rs=array_filter($rs);
+
+        $sql="INSERT orders (id,price) VALUES";
+        foreach ($rs as $k=>$v){
+            $sql.="($k,$v),";
+        }
+        $sql=trim($sql,",");
+        $sql.="ON DUPLICATE KEY UPDATE price=VALUES(price)";
+        LOG:info($sql);
+        /*if(DB::insert($sql)){
+            return 1;
+        }else{
+            return 0;
+        }*/
+
     }
 
     public function myRedirect($url,$msg){
