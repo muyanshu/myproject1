@@ -8,6 +8,8 @@ use Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
+
 class ProductController extends Controller
 {
     /**
@@ -28,27 +30,52 @@ class ProductController extends Controller
             }
         }
 
-        $class_id = "";
+        $class_arr = array();
         $keywords = "";
 
         if(!empty($request->input('class_id')) || !empty($request->input('keywords'))){
             $class_id = $request->input('class_id');
             $keywords = $request->input('keywords');
 
-            echo $class_id;
-            echo $keywords;
+            $product = Product::orderBy("displayorder","asc");
+            if(!empty($keywords)){
+                $product = $product->where("name",'like', '%'.$keywords.'%');
+            }
+
+            if(!empty($class_id)){
+                $class_arr = explode("#",$class_id);
+                if($class_arr[1]){
+                    //echo "二级";
+                    $parentid = ProductType::getClass($class_arr[1])->parentid;
+                    $parent_name = ProductType::getClassName($parentid)->name;
+
+                    $zd_name = ($parent_name == "课程")?"course_cate":"class_cate";
+                    $product = $product->where($zd_name, $class_arr[1]);
 
 
-            $product = Product::orderBy("displayorder","asc")->where("name",'like', '%'.$keywords.'%')->orwhere("course_cate", $class_id)->orwhere("class_cate", $class_id)->select(["id","course_cate","class_cate","name","thumb","price","displayorder","status","updated_at"]);
-            //dd($product);
-            //exit;
+                }else{
+                    //echo "一级";
+                    $parent_name = ProductType::getClassName($class_arr[0])->name;
+                    $parent_id = $class_arr[0];
+
+                    $class_ids = ProductType::where("parentid",$parent_id)->pluck('id');
+
+                    $zd_name = ($parent_name == "课程")?"course_cate":"class_cate";
+
+                    $product = $product->whereIn($zd_name,$class_ids);
+
+                }
+            }
+
+
+            $product = $product->select(["id","course_cate","class_cate","name","thumb","price","displayorder","status","updated_at"]);
         }else{
 
             $product = Product::orderBy("displayorder","asc")->select(["id","course_cate","class_cate","name","thumb","price","displayorder","status","updated_at"]);
         }
 
         $rs = $product->paginate(15);
-        return view("admin.products.pList",compact("category","children","rs","class_id","keywords"));
+        return view("admin.products.pList",compact("category","children","rs","class_arr","keywords"));
 
 
     }
