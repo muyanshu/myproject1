@@ -18,10 +18,10 @@
                     <select  name="class_id">
                         <option value="0">全部</option>
                         @foreach($category as $row)
-                        <option value="{{$row->id}}" @if(!empty($class_id)) @if($row->id == $class_id)selected @endif  @endif>{{$row->name}}</option>
+                        <option value="{{$row->id}}#0" @if(!empty($class_arr[0])) @if($row->id == $class_arr[0])selected @endif  @endif>{{$row->name}}</option>
                             @if(!empty($children[$row->id]))
                                 @foreach($children[$row->id] as $v)
-                                    <option value="{{$v->id}}"  @if(!empty($class_id)) @if($v->id == $class_id)selected @endif  @endif>&nbsp;&nbsp;&nbsp;&nbsp;|---- {{$v->name}}</option>
+                                    <option value="{{$row->id}}#{{$v->id}}"  @if(!empty($class_arr[1])) @if($v->id == $class_arr[1])selected @endif  @endif>&nbsp;&nbsp;&nbsp;&nbsp;|---- {{$v->name}}</option>
                                 @endforeach
                             @endif
 
