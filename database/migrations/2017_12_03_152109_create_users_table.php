@@ -15,15 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->comment("登录必填用户名");
-            $table->string('password');
-            $table->string('tel')->unique()->comment("手机号码必填");
+            $table->string('name')->unique()->comment("登录必填用户名")->nullable();
+            $table->string('password')->nullable();
+            $table->string('tel')->unique()->comment("手机号码必填")->nullable();
             $table->tinyInteger("status")->default(1)->comment("状态");
             $table->string('nickname')->nullable()->comment("昵称默认为登录账号");
             $table->string('realname')->nullable()->comment("真实姓名默认为登录账号");
             $table->string('photo')->nullable()->comment("头像url");
             $table->dateTime('expire')->nullable()->comment("VIP过期时间");
-            $table->string('email')->unique()->comment("邮箱");
+            $table->tinyInteger("userorder")->default(0)->comment("排序");
+            $table->string('email')->unique()->comment("邮箱")->nullable();
             $table->string('qq')->nullable()->comment("QQ");
             $table->string('qqopenid')->nullable()->commet("qq关联");
             $table->string('wxopenid')->nullable()->commet("微信关联");

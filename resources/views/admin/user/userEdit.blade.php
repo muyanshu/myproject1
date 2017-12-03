@@ -126,7 +126,8 @@
                     <div style="width: 500px">
                         @foreach($role as $v)
                             @if($v->status=="1")
-                            {{$v->id}}.<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}">
+                            {{$v->id}}.<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}"
+                                              @if(in_array($v->id,$roles)) checked @endif >
                                 {{$v->name}};&nbsp&nbsp
                             @endif
                         @endforeach
