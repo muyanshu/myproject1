@@ -50,7 +50,7 @@
                 <th><i class="require">*</i>产品图片：</th>
                 <td>
                     <div style="position: relative;width: 114px;height: 45px">
-                        <input type="button" value="上传图片">
+                        <input type="button" style="line-height: normal;" value="上传图片">
                         <input multiple name="pic" id="pic" type="file" accept=".gif,.jpg,.png,.jpeg"  style="opacity: 0;background-color: transparent;position: absolute;top:9px;left: 0px;width: 114px;height: 25px">
                         <input type="hidden" name="thumb" id="thumb"  value="{{$rs->thumb}}">
                         <span style="color: red;position: absolute;top:4px;left: 130px;width: 200px;height: 25px" id="pic_message">@if(!empty($message_arr->pic))*{{$message_arr->pic}}@endif</span>
@@ -127,7 +127,7 @@
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:210,});
-<<<<<<< HEAD
+
 
     $('input[type="submit"]').click(function () {
         var i = 0;
@@ -196,7 +196,6 @@
     });
 
 
-=======
->>>>>>> b984e2989ec186b2154a37dea6f51de3e0276ea0
+
 </script>
 @endsection

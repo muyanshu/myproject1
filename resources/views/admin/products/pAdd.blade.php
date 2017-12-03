@@ -63,7 +63,7 @@
                 <th><i class="require">*</i>产品图片：</th>
                 <td>
                     <div style="position: relative;width: 114px;height: 45px">
-                        <input type="button" value="上传图片">
+                        <input type="button" style="line-height: normal;" value="上传图片">
                         <input multiple name="pic" id="pic" type="file" accept=".gif,.jpg,.png,.jpeg"  style="opacity: 0;background-color: transparent;position: absolute;top:9px;left: 0px;width: 114px;height: 25px">
                         <span style="color: red;position: absolute;top:4px;left: 130px;width: 200px;height: 25px" id="pic_message">@if(!empty($message_arr->pic))*{{$message_arr->pic}}@endif</span>
                     </div>
