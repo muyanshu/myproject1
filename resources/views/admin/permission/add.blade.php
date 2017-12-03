@@ -21,7 +21,7 @@
     <!--结果集标题与导航组件 结束-->
 
             <div class="result_wrap">
-                <form action="/admin/permission" method="post">
+                <form action="{{asset('/admin/permission')}}" method="post" e>
                     {{csrf_field()}}
                     <table class="add_tab">
                         <tbody>

@@ -62,7 +62,8 @@ class PermissionController extends Controller
     public function create()
     {
         //
-        $role = Role::all();
+
+       $role = Role::all();
         return view("admin.permission.add",compact("role"));
     }
 
