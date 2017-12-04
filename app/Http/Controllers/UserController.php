@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\RoleUser;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -41,7 +43,7 @@ class UserController extends Controller
                                 return "<script>alert('请选择类型！'); location.href='/admin/user';</script>";
                             }
                      }
-                            $rs = $user->offset($offset)->orderBy('id','desc')->limit($cnt)->get(); //分页显示
+                            $rs = $user->offset($offset)->orderBy('userorder','asc')->paginate(3); //分页显示
                             if($search1){
                             $search = "search=$search1&";
                         } else {
@@ -76,7 +78,7 @@ class UserController extends Controller
     {
 //        表单验证规则
         $this->validate($request,[
-            'name' => 'required|string|between:2,8',
+            'name' => 'required|string|between:2,8|unique:users,name',
             'tel'  => 'required|digits:11|unique:users,tel',
             'email'=>'required|email|unique:users,email',
             'qq' => 'nullable|digits_between:8,10',
@@ -85,6 +87,7 @@ class UserController extends Controller
         ],
             [   "name.required"=> "用户名必须填写",
                 "name.between" => "请输入2-8位的用户名",
+                'name.unique'  => "用户名已经存在",
                 "tel.required" => "联系方式必须填写",
                 "tel.digits"   => "联系方式不正确，请输入11位的号码",
                 'tel.unique'  => "号码已经存在",
@@ -135,9 +138,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $role = Role::all();
-        //$roles = $user->getRoles();
-        return view('admin.user.userEdit',compact("user","role"));
+        $role = Role::all();//获取role的所有对象
+        $roles = $user->getRoles(); //查询出当前user对应的roleid值
+        return view('admin.user.userEdit',compact("user","role","roles"));
     }
 
     /**
@@ -150,15 +153,15 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
             $id=$request->input("id");
-//        验证密码
+        //验证密码
             $pass=$request->input("password");
         if($pass){
             $this->validate($request,['password' => 'min:6'],['password.min' => "密码必须大于6位"]);
             $user->password = md5("$pass");
         }
-//        验证规则
+            //验证规则
             $this->validate($request,[
-                'name' => 'required|string|between:2,8',
+                'name' => 'required|between:2,8|unique:users,name,'.$id,
                 'tel'  => 'required|digits:11|unique:users,tel,'.$id,
                 'email'=>'required|email|unique:users,email,'.$id,
                 'qq' => 'nullable|digits_between:8,10',
@@ -166,6 +169,7 @@ class UserController extends Controller
             ],
                 [   "name.required"=> "用户名必须填写",
                     "name.between" => "请输入2-8位的用户名",
+                    //'name.unique'  => "用户名已经存在",
                     "tel.required" => "联系方式必须填写",
                     "tel.digits"   => "联系方式不正确，请输入11位的号码",
                     'email.required' => "邮箱必须填写",
@@ -179,7 +183,7 @@ class UserController extends Controller
         if($file) { //判断是否存在
             $this->uImg($file,$user);//图片更新处理
         }
-        //        接收数据并保存到数据库
+        //接收数据并保存到数据库
         $user->name = $request->input("name");
         $user->status = $request->input("status");
         $user->tel = $request->input("tel");
@@ -188,6 +192,18 @@ class UserController extends Controller
         $user->realname = $request->input("realname","");
         $user->qq = $request->input("qq","");
         $user->expire = $request->input("expire","");
+
+        //角色处理
+        $roles = $request->input("roles",[]);
+        $allroles =  Role::getRolesId();//获取所有角色id
+        $rolesCancel =  array_diff($allroles,$roles); //计算原role的id跟input的差集，取消的id；
+        foreach ($rolesCancel as $v){ //删除取消的权限
+            RoleUser::where(["role_id"=>$v,"user_id"=>$user->id])->delete();
+        }
+        foreach($roles as $v){     //插入新角色权限
+            $roleuser = RoleUser::firstOrNew(['role_id' => $v, 'user_id' => $user->id]);
+            $roleuser->save();
+        }
         $user->save();
         return "<script>alert('修改用户成功'); location.href='/admin/user';</script>";
     }
@@ -257,15 +273,31 @@ class UserController extends Controller
                     $users->where('id',"=","$v")->delete();
                 } else{
                     $users->where('id',"=","$v")->delete();
-
                 }
             }
             return "ture";
         }else{
             return "false";
         }
+    }
 
-
+    /*
+     * 更新排序
+     */
+    public function  batchUpdate(Request $request){
+        $rs = $request->input("ids");
+        $rs = array_filter($rs);    //过滤空数组
+        $sql = "INSERT users(id,`userorder`) VALUES";
+        foreach ($rs as $key => $val) {
+            $sql .= "($key,$val),";
+        }
+        $sql = trim($sql, ",");
+        $sql .= " ON DUPLICATE KEY UPDATE `userorder` = VALUES(`userorder`);";
+        if(DB::insert($sql)){
+            return "200";
+        }else{
+            return "500";
+        }
     }
 
 }

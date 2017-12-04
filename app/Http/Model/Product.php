@@ -12,4 +12,5 @@ class Product extends Model
     public static function getProduct($id){
         return self::where("id",$id)->select(["*"])->first();
     }
+
 }

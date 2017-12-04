@@ -144,7 +144,7 @@ class ProductTypeController extends Controller
         }
         $sql = trim($sql, ",");
         $sql .= " ON DUPLICATE KEY UPDATE `displayorder` = VALUES(`displayorder`)";
-
+        //return $sql;
         if(DB::insert($sql)){
             return "200";
         }else{
