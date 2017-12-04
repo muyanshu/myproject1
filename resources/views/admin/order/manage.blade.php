@@ -98,33 +98,33 @@
                         <th class="tc">订单ID</th>
                         <th>订购人</th>
                         <th>商品名称</th>
+                        <th>数量</th>
                         <th>总价格</th>
                         <th>状态</th>
                         <th>更新时间</th>
-                        <th>备注</th>
                         <th>操作</th>
                     </tr>
                     @foreach($rs as $v)
                         <tr>
                             <td class="tc"><input type="checkbox" name="id" value="{{$v->id}}"></td>
                             <td class="tc">
-                                <input type="text" name="ord" value="{{$v->id}}" style="width: 30px;">
+                                <input type="text" name="ord" value="{{$v->dorder}}" style="width: 30px;">
                             </td>
                             <td class="tc">{{$v->ordernumber}}</td>
                             <td>
                                 <a href="#">{{$v->username}}</a>
                             </td>
-                            <td>{{$v->product_name}}</td>
-                            <td style="color: red">{{$v->price}}元</td>
+                            <td>{{$v->pname}}</td>
+                            <td>{{$v->num}}</td>
+                            <td style="color: red">{{$v->price*$v->num}}元</td>
                             <td>
                                 @if($v->status==1)
-                                    待付款
+                                    未付款
                                 @else
                                     已付款
                                 @endif
                             </td>
                             <td>{{$v->created_at}}</td>
-                            <td>{{$v->remark}}</td>
                             <td>
                                 <a href="/admin/orderedit/{{$v->id}}">修改</a>
                                 <a class="delEvent" href="" data-toggle="modal" id="{{$v->id}}btn" data-target="#myDelModal">删除</a>
@@ -226,7 +226,7 @@
             $(this).prop("checked",flag);
         })
     })
-    
+
     $("#changeorder").click(function () {
         var ids=[];
         $("input[name='id']").each(function () {
@@ -237,16 +237,23 @@
         })
         console.log(ids);
 
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
-        });
-        $.post("/admin/obatchupdate",{dt:ids},function (data) {
-            if(data==1){
-                alert("批量修改成功");
-            }else{
-                alert("批量修改失败,可能输入的排序已存在，请重新修改");
-            }
-        })
+        if(ids.length>0){
+            $.ajax({
+                url:"/admin/obatchupdate",
+                method:"post",
+                data:{'_token': $('input[name=_token]').val(),"dt":ids},
+                success:function (data) {
+                    if(data==1){
+                        alert("排序更新成功");
+                    }else{
+                        alert("排序更新失败");
+                    }
+                }
+            });
+        }else{
+            alert("请选择");
+        }
+
     })
 </script>
 </body>

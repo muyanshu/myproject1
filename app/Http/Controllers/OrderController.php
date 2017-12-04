@@ -35,7 +35,7 @@ class OrderController extends Controller
             }
             $offset=($curr-1)*$cnt;
             if($search){
-                $orm=$orm->Where('ordernumber','like',"%$search%")->orWhere('username','like',"%$search%")->orWhere('product_name','like',"%$search%");
+                $orm=$orm->Where('ordernumber','like',"%$search%")->orWhere('username','like',"%$search%")->orWhere('pname','like',"%$search%");
             }
             $rs=$orm->offset($offset)->limit($cnt)->get();
             if($search){
@@ -49,7 +49,6 @@ class OrderController extends Controller
             $this->myRedirect("/admin/order","查找的页面不存在");
         }
         return view("admin.order.manage");
-
     }
 
     /**
@@ -107,13 +106,15 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $id=$request->input("id");
+        $num=$request->input("num");
         $price=$request->input("price");
         $status=$request->input("status");
-        $remark=$request->input("remark");
+        $detail=$request->input("detail");
         $orm=Order::find($id);
+        $orm->num=$num;
         $orm->price=$price;
         $orm->status=$status;
-        $orm->remark=$remark;
+        $orm->detail=$detail;
         $rs=$orm->save();
         if($rs){
             $this->myRedirect("/admin/order","修改成功");
@@ -145,18 +146,17 @@ class OrderController extends Controller
         $rs=$request->input("dt");
         $rs=array_filter($rs);
 
-        $sql="INSERT orders (id,price) VALUES";
+        $sql="INSERT orders (id,dorder) VALUES";
         foreach ($rs as $k=>$v){
             $sql.="($k,$v),";
         }
         $sql=trim($sql,",");
-        $sql.="ON DUPLICATE KEY UPDATE price=VALUES(price)";
-        LOG:info($sql);
-        /*if(DB::insert($sql)){
+        $sql.="ON DUPLICATE KEY UPDATE dorder=VALUES(dorder)";
+        if(DB::insert($sql)){
             return 1;
         }else{
             return 0;
-        }*/
+        }
 
     }
 

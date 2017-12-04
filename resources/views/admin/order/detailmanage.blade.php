@@ -112,7 +112,7 @@
                             <td>
                                 <a href="#">{{$v->username}}</a>
                             </td>
-                            <td>{{$v->product_name}}</td>
+                            <td>{{$v->pname}}</td>
                             <td style="color: red">{{$v->price}}元</td>
                             <td>{{$v->created_at}}</td>
                             <td>
@@ -208,6 +208,42 @@
                 $('#myDelModal').modal("hide");
             }
         })
+    })
+
+    $("#checkall").change(function () {
+        var flag=$(this).prop("checked");
+        $("input[name='id']").each(function () {
+            $(this).prop("checked",flag);
+        })
+    })
+
+    $("#changeorder").click(function () {
+        var ids=[];
+        $("input[name='id']").each(function () {
+            if($(this).prop("checked")){
+                var id=parseInt($(this).val());
+                ids[id]=parseInt($(this).parent().next().children().val());
+            }
+        })
+        console.log(ids);
+
+        if(ids.length>0){
+            $.ajax({
+                url:"/admin/debatchupdate",
+                method:"post",
+                data:{'_token': $('input[name=_token]').val(),"dt":ids},
+                success:function (data) {
+                    if(data==1){
+                        alert("排序更新成功");
+                    }else{
+                        alert("排序更新失败");
+                    }
+                }
+            });
+        }else{
+            alert("请选择");
+        }
+
     })
 </script>
 </body>

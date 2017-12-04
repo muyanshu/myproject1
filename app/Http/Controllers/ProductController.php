@@ -300,4 +300,40 @@ class ProductController extends Controller
         return json_encode($message);
 
     }
+
+    public function myRedirect($url,$msg){
+        echo "<script>
+                alert('$msg');
+                location.href='$url'
+            </script>";
+    }
+
+
+    //前端商城
+    public function products(){
+        $orm=new Product();
+        $num=$orm->count();
+        $cnt=8;
+        $max=ceil($num/$cnt);
+        $arr=range(1,$max);
+        $curr=isset($_GET['page'])?$_GET['page']:1;
+        if(in_array($curr,$arr)){
+            $left=max(1,$curr-1);
+            $right=min($left+2,$max);
+            $left=max(1,$right-2);
+            $page=[];
+            for($i=$left;$i<=$right;$i++){
+                $page[$i]="page=".$i;
+            }
+            $offset=($curr-1)*$cnt;
+            $rs=Product::offset($offset)->limit($cnt)->get();
+            foreach ($rs as $k=>$v){
+                $rs[$k]->detail=strip_tags($v->detail);
+            }
+            //$rs=Product::all();
+            return view("web.Products",["rs"=>$rs,"page"=>$page,"curr"=>$curr,"max"=>$max]);
+        }else{
+            $this->myRedirect("/products","查找的页面不存在");
+        }
+    }
 }

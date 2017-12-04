@@ -23,12 +23,12 @@ Route::group(["prefix"=>"admin"],function(){
     Route::post("orderdel","OrderController@destroy");
     Route::get("orderedit/{order}","OrderController@edit");
     Route::post("orderupdate","OrderController@update");
-    Route::post("obatchupdate","OrderController@batchUpdate");
+    Route::post("obatchupdate","OrderController@obatchUpdate");
 
     Route::get("orderdetail","OrderDetailController@index");
     Route::post("detaildel","OrderDetailController@destroy");
     Route::get("detailedit/{order}","OrderDetailController@edit");
     Route::post("detailupdate","OrderDetailController@update");
-    Route::post("debatchupdate","OrderDetailController@batchUpdate");
+    Route::post("debatchupdate","OrderDetailController@debatchUpdate");
 
 });

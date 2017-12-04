@@ -17,6 +17,7 @@ include 'web1.php';
 include 'admin.php';
 include 'user.php';
 include 'video.php';
+include 'car.php';
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
