@@ -15,12 +15,15 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ordernumber')->comment("订单编号");
-            $table->string('username')->comment("订单人");
-            $table->string('product_name')->comment("商品名称");
-            $table->float('price')->comment("商品价格");
+            $table->string('ordernumber')->comment("订单编号")->nullable();
+            $table->string('username')->comment("订单人")->nullable();
+            $table->string('pname')->comment("商品名称")->nullable();
+            $table->Integer('num')->default(0)->comment("数量");
+            $table->double('price')->default(0)->comment("商品价格");
+            $table->double('sprice')->default(0)->comment("市场价格");
             $table->tinyInteger('status')->default(1)->comment("订单状态");
-            $table->string('remark')->comment("备注");
+            $table->tinyInteger("dorder")->default(0)->comment("排序");
+            $table->string('detail')->default("多买多优惠")->comment("备注");
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@
             <tr>
                 <th width="80"><i class="require">*</i>商品名称：</th>
                 <td>
-                    {{$order->product_name}}
+                    {{$order->pname}}
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,13 @@
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>订单价格：</th>
+                <th><i class="require">*</i>数量：</th>
+                <td>
+                    <input type="text" class="sm" name="num" value="{{$order->num}}">
+                </td>
+            </tr>
+            <tr>
+                <th><i class="require">*</i>商品价格：</th>
                 <td>
                     <input type="text" class="sm" name="price" value="{{$order->price}}">元
                 </td>
@@ -62,7 +68,7 @@
             <tr>
                 <th>备注：</th>
                 <td>
-                    <textarea name="remark">{{$order->remark}}</textarea>
+                    <textarea name="detail">{{$order->detail}}</textarea>
                 </td>
             </tr>
             </tbody>

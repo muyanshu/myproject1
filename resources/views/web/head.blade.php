@@ -17,7 +17,7 @@
                     <li class="active"><a href="/">网站首页 <span class="sr-only">(current)</span></a></li>
                     <li><a href="{{route('about')}}">简介</a></li>
                     <li><a href="{{route('list')}}">新闻博客</a></li>
-                    <li><a href="{{route('products')}}">商城</a></li>
+                    <li><a href='/products'>商城</a></li>
                     <li><a href="{{route('piclist')}}">图文</a></li>
                     <li><a href="{{route('msg')}}">论坛</a></li>
                     <li><a href="{{route('video')}}">视频教程</a></li>
