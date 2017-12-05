@@ -21,14 +21,14 @@
     <!--结果集标题与导航组件 结束-->
 
             <div class="result_wrap">
-                <form action="{{asset('/admin/permission')}}" method="post" e>
+                <form action="{{asset('/admin/permission')}}" method="post" >
                     {{csrf_field()}}
                     <table class="add_tab">
                         <tbody>
                         <tr>
                             <th><i class="require">*</i>权限描述：</th>
                             <td>
-                                <input type="text" class="md" name="{{old('name')}}" placeholder="请输入名称">
+                                <input type="text" class="md"  name="name" value="{{old('name')}}" placeholder="请输入名称" style="float:left">
                                 @if($errors->has("name"))
                                     <div style="color: red; float: left; height:23px;line-height: 30px;">
                                         {{ $errors->first('name') }}
@@ -39,12 +39,17 @@
                         <tr>
                             {{--<th width="120"><i class="require">*</i>权限类型：</th>--}}
                             <td class="sd" style="left:50px;">
-                            <td><select name="resource_id">
-                                    <option value="-1">所有资源类型</option>
-                                    <?php
-                                    echo App\ProductType::getSortOption();
-                                    ?>
-                                </select></td>
+                            <td><select name="resource_id" style="float: left">
+                                    <option value="">所有资源类型</option>
+                                    <?php echo App\Http\Model\ProductType::getAllClass();?>
+                                </select>
+                                @if($errors->has("resource_id"))
+                                    <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                        {{ $errors->first('resource_id') }}
+                                    </div>
+                                @endif
+                            </td>
+
                             </td>
                         </tr>
                         <tr>
@@ -64,8 +69,8 @@
                         <tr>
                             <th></th>
                             <td>
-                                <input type="submit" value="提交">
-                                <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                                <input type="submit" class="btn btn-primary" value="提交">
+                                <input type="button" class="btn" onclick="history.go(-1)" value="返回">
                             </td>
                         </tr>
                         </tbody>

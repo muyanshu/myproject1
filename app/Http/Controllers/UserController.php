@@ -103,9 +103,7 @@ class UserController extends Controller
         );
         $users=new user();
         $file=$request->file('photo');//获取文件
-        if($file) { //判断是否存在
-            $this->image($file,$users);//图片处理
-        }
+        $this->image($file,$users);//图片处理
 //        接收数据并保存到数据库
         $users->name = $request->input("name");
         $users->status = $request->input("status");
@@ -179,10 +177,8 @@ class UserController extends Controller
                     'photo.image' =>"头像必须是图片（jpeg，jpg，gif，bmp）",
                 ]
             );
-        $file=$request->file('photo');//获取文件
-        if($file) { //判断是否存在
-            $this->uImg($file,$user);//图片更新处理
-        }
+        $file=$request->file('photo');//获取图片
+        $this->uImg($file,$user);//图片更新处理
         //接收数据并保存到数据库
         $user->name = $request->input("name");
         $user->status = $request->input("status");
@@ -217,6 +213,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $file=$user->photo;//获取图片
+        roleuser::where('user_id',"=",$user->id)->delete();
         if($file){
                 $path=public_path('storage/uploads/').$file;
                 unlink($path);
@@ -231,27 +228,31 @@ class UserController extends Controller
       *
       */
     public function image($file,$user){
+        if ($file) {
             //获取文件相关信息
-            $originalName=$file->getClientOriginalName(); //文件原名
-            $ext=$file->getClientOriginalExtension();    //扩展名
-            $realPath=$file->getRealPath(); //临时文件的绝对路径
-            $type=$file->getClientMimeType(); //image/jpeg
+            $originalName = $file->getClientOriginalName(); //文件原名
+            $ext = $file->getClientOriginalExtension();    //扩展名
+            $realPath = $file->getRealPath(); //临时文件的绝对路径
+            $type = $file->getClientMimeType(); //image/jpeg
             //上传文件
-            $filename=date('Y-m-d').'-'.uniqid().'.'.$ext;
+            $filename = date('Y-m-d') . uniqid() . '.' . $ext;
             $destinationPath = 'storage/uploads/'; //public 文件夹下面建软链接php artisan storage:link 然后放在 uploads 文件夹
-            $rs=$file->move($destinationPath ,$filename);
-            return   $user->photo = $filename;
+            $rs = $file->move($destinationPath, $filename);
+            return $user->photo = $filename;
+        }
     }
 
      /*图片更新上传处理
-      *删除旧图片，替换新图片
+      *
       *
       */
     public function uImg($file,$user){
-        $files=$user->photo;//获取图片
+        $files=$user->photo;//获取数据库图片
         if($files){
             $path=public_path('storage/uploads/').$files;
             unlink($path);//删除原图片
+            $this->image($file,$user);
+        }else{
             $this->image($file,$user);
         }
     }
@@ -288,8 +289,8 @@ class UserController extends Controller
         $rs = $request->input("ids");
         $rs = array_filter($rs);    //过滤空数组
         $sql = "INSERT users(id,`userorder`) VALUES";
-        foreach ($rs as $key => $val) {
-            $sql .= "($key,$val),";
+        foreach ($rs as $k => $v) {
+            $sql .= "($k,$v),";
         }
         $sql = trim($sql, ",");
         $sql .= " ON DUPLICATE KEY UPDATE `userorder` = VALUES(`userorder`);";

@@ -22,13 +22,15 @@
 
     <div class="result_wrap">
         <form action="/admin/permission/{{$permission->id}}" method="post">
+            <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" value="{{$permission->id}}" name="id">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
                 <tr>
                     <th><i class="require">*</i>权限描述：</th>
                     <td>
-                        <input type="text" class="md" name="{{old('name')}}" placeholder="请输入名称">
+                        <input type="text" class="md" name="name" placeholder="请输入名称" value="{{$permission->name}}">
                         @if($errors->has("name"))
                             <div style="color: red; float: left; height:23px;line-height: 30px;">
                                 {{ $errors->first('name') }}
@@ -42,9 +44,15 @@
                     <td><select name="resource_id">
                             <option value="-1">所有资源类型</option>
                             <?php
-                            echo App\ProductType::getSortOption($permission->resource_id);
+                            echo App\Http\Model\ProductType::getInClass($permission->resource_id);
                             ?>
-                        </select></td>
+                        </select>
+                        @if($errors->has("resource_id"))
+                            <div style="color: red; float: left; height:23px;line-height: 30px;">
+                                {{ $errors->first('resource_id') }}
+                            </div>
+                        @endif
+                    </td>
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +61,8 @@
                         <div style="width: 400px">
                             @foreach($role as $v)
                                 @if($v->status=="1")
-                                    {{$v->id}}&nbsp;<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}">
+                                    {{$v->id}}&nbsp;<input type="checkbox" id="role{{$v->id}}" name="roles[]" value="{{$v->id}}"
+                                                           @if(in_array($v->id,$roles)) checked @endif >
                                     {{$v->name}};&nbsp&nbsp
                                 @endif
                             @endforeach
@@ -64,8 +73,8 @@
                 <tr>
                     <th></th>
                     <td>
-                        <input type="submit" value="提交">
-                        <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                        <input type="submit" class="btn btn-primary" value="提交">
+                        <input type="button" class="btn" onclick="history.go(-1)" value="返回">
                     </td>
                 </tr>
                 </tbody>

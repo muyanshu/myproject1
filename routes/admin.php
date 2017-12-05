@@ -25,6 +25,8 @@ Route::group(["prefix"=>"admin"],function(){
     Route::resource("user","UserController");
 
     //权限路由
+    Route::post("permission/batchUpdate","PermissionController@batchUpdate");
+    Route::post("permission/deleteAll","PermissionController@deleteAll");
     Route::resource("permission","PermissionController");
 
     //订单路由

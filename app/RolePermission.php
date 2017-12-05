@@ -9,4 +9,6 @@ class RolePermission extends Model
     //知识点一：关闭数据库的timestamps
     public $timestamps = false;
     protected $fillable = ['role_id', 'permission_id'];
+
+
 }
