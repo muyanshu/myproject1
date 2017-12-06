@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Permission;
 use App\Role;
+use App\Http\Model\ProductType;
 use App\RolePermission;
-use App\RoleUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
@@ -16,42 +19,18 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
-        $role=new role();
-        $num=$role->count(); //统计总数
-        $cnt=3;
-        $max=ceil($num/$cnt); //最大值
-        $arr=range(1,$max);
-        $curr=isset($_GET['page'])?$_GET['page']:1;
+        $permission=new permission();
         $sname=request()->input("sname","");
-        $search1=request()->input("search",""); //查询
-        if(in_array($curr,$arr)){ //分页
-            $left=max(1,$curr-1);
-            $right=min($left+2,$max);
-            $left=max(1,$right-2);
-            $page=[];
-            for($i=$left;$i<=$right;$i++){
-                $page[$i]="page=".$i;
-            }
-            $offset=($curr-1)*$cnt;
+        $search1=request()->input("search","");
             if ($search1) {  //数据查询like
                 if($sname){
-                    $role = $role->Where("$sname", 'like', "%$search1%");
+                    $permission = $permission->Where("$sname", 'like', "%$search1%");
                 }else{
                     return "<script>alert('请选择类型！'); location.href='/admin/permission';</script>";
                 }
             }
-            $rs = $role->offset($offset)->orderBy('id','desc')->limit($cnt)->get(); //分页显示
-            if($search1){
-                $search = "search=$search1&";
-            } else {
-                $search = "";
-            }
-            return view("admin.permission.list", compact("rs", "curr", "max", "search", "search1", "page"));
-        }else{
-            return "<script>alert('已经没有页面了！'); location.href='/admin/permission';</script>";
-        }
-        return view("admin.permission.list");
+            $rs = $permission->orderBy('porder','desc')->get(); //显示
+            return view("admin.permission.list", compact("rs","search1"));
     }
 
     /**
@@ -62,8 +41,7 @@ class PermissionController extends Controller
     public function create()
     {
         //
-
-       $role = Role::all();
+        $role = Role::all();
         return view("admin.permission.add",compact("role"));
     }
 
@@ -75,7 +53,26 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //验证规则
+        $this->validate($request,[
+            'name' => 'required|string',
+            'resource_id'=>'required',
+        ],
+            [
+            'name.required'  => "权限名称必须填写",
+            'resource_id.required'    => "请选择资源类型",
+            ]);
+        $permission=new permission();
+        $permission->name=$request->input("name");
+        $permission->resource_id=$request->input("resource_id");
+        $permission->save();
+        //角色处理
+        $permissions = $request->input("roles",[]);
+        foreach($permissions as $v){     //插入新角色权限
+            $rolepermissions = RolePermission::firstOrNew(['role_id' => $v, 'permission_id' => $permission->id]);
+            $rolepermissions->save();
+        }
+        return "<script>alert('添加权限成功'); location.href='/admin/permission';</script>";
 
     }
 
@@ -111,9 +108,32 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        //验证规则
+        $this->validate($request,[
+            'name' => 'required|string',
+            'resource_id'=>'required',
+        ],
+            [
+                'name.required'  => "权限名称必须填写",
+                'resource_id.required'    => "请选择资源类型",
+            ]);
+        $permission->name=$request->input("name");
+        $permission->resource_id=$request->input("resource_id");
+        $permission->save();
+        //角色处理
+        $roles = $request->input("roles",[]);
+        $allroles =  Role::getRolesId();//获取所有角色id
+        $rolesCancel =  array_diff($allroles,$roles); //计算原role的id跟input的差集，取消的id；
+        foreach ($rolesCancel as $v){ //删除取消的权限
+            RolePermission::where(["role_id"=>$v,"permission_id"=>$permission->id])->delete();
+        }
+        foreach($roles as $v){     //插入新角色权限
+            $rolepermissions = RolePermission::firstOrNew(['role_id' => $v, 'permission_id' => $permission->id]);
+            $rolepermissions->save();
+        }
+        return "<script>alert('修改权限成功'); location.href='/admin/permission';</script>";
     }
 
     /**
@@ -122,8 +142,47 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        rolepermission::where('permission_id',"=",$permission->id)->delete();
+        return $permission->delete() ? "ture" : "false";
+    }
+
+    /*
+   * 批量删除功能
+   */
+    public  function  deleteAll(Request $request){
+        $id = $request->input('str');
+        if($id){
+            $str = explode(",",$id);
+            $permission=new permission();
+            foreach($str as $v){
+                rolepermission::where('permission_id',"=","$v")->delete();
+                $permission->where('id',"=","$v")->delete();
+                }
+            return "ture";
+            }else{
+            return "false";
+        }
+
+    }
+
+    /*
+     * 更新排序
+     */
+    public function  batchUpdate(Request $request){
+        $rs = $request->input("ids");
+        $rs = array_filter($rs);    //过滤空数组
+        $sql = "INSERT permissions(id,`porder`) VALUES";
+        foreach ($rs as $k => $v) {
+            $sql .= "($k,$v),";
+        }
+        $sql = trim($sql, ",");
+        $sql .= " ON DUPLICATE KEY UPDATE `porder` = VALUES(`porder`);";
+        if(DB::insert($sql)){
+            return "200";
+        }else{
+            return "500";
+        }
     }
 }

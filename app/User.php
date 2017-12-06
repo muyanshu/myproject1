@@ -33,12 +33,11 @@ class User extends Authenticatable
         }
 
         $roles = [];
-        $role = RoleUser::where("user_id","=",$this->id)->get(["role_id"]);
+        $role = RoleUser::where("user_id","=",$this->id)->get(["role_id"]); //查询id等于当前id的roleid
         foreach ($role as $v){
             $roles[] =  $v->role_id;
         }
         session(["userroles"=>$roles]);
-        $this->roles = $roles;
         return $roles;
     }
 

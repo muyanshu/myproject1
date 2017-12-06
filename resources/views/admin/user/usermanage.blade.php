@@ -46,7 +46,7 @@
             <div class="short_wrap">
                 <a href="/admin/user/create"><i class="fa fa-plus"></i>新增用户</a>
                 <a href="#" id="deleteuser"><i class="fa fa-recycle"></i>批量删除</a>
-                <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                <a href="#"   id="batchUpdate" ><i class="fa fa-refresh"></i>更新排序</a>
             </div>
         </div>
         <!--快捷导航 结束-->
@@ -72,7 +72,7 @@
                     <td class="tc">
                         <input type="checkbox" name="id" value="{{$v->id}}"></td>
                     <td class="tc">
-                        <input type="text" name="ord[]" value="1">
+                        <input type="text" name="ord" value="{{$v->userorder}}">
                     </td>
                     <td class="tc">{{$v->id}}</td>
                     <td><a href="#">{{$v->name}}</a></td>
@@ -138,8 +138,7 @@
     </div>
     <!--搜索结果页面 列表 结束-->
 </form>
-
-<script>
+<script >
     //全选功能
     $("#selectAll").change(function(){
         var flag = $(this).prop("checked");
@@ -182,6 +181,42 @@
         }
     });
 
-</script>
+    //更新排序
+    $("#batchUpdate").click(function () {
+        var ids = [];
+        $('input[name="id"]').each(function(){
+            if($(this).prop("checked")){
+                var id = parseInt($(this).val());
+                ids[id] = $(this).parent().siblings().find("input[name='ord']").val();
+            }
+        });
+       // alert(ids);
+        if(ids.length>0){
+            //console.log(ids);
+            $.ajax({
+                url:"/admin/user/batchUpdate",
+                method:"post",
+                data:{'_token': $('input[name=_token]').val(),"ids":ids},
+                success:function (data) {
+                    //alert(data);
+                    if(data=="200"){
+                        alert("排序更新成功");
+                    }else{
+                        alert("排序更新失败");
+                    }
+                }
+            });
+            window.location.reload();
+        }else{
+            alert('请点击全选');
+        }
+    });
 
+
+</script>
 @endsection
+
+
+
+
+

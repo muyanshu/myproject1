@@ -23,7 +23,7 @@
                 <tr>
                     <th width="80"><i class="require">*</i>商品名称：</th>
                     <td>
-                        {{$order->product_name}}
+                        {{$order->pname}}
                     </td>
                 </tr>
                 <tr>
@@ -36,6 +36,12 @@
                     <th><i class="require">*</i>订购时间：</th>
                     <td>
                         <p>{{$order->created_at}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="require">*</i>数量：</th>
+                    <td>
+                        <input type="text" class="sm" name="num" value="{{$order->num}}">
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +68,7 @@
                 <tr>
                     <th>备注：</th>
                     <td>
-                        <textarea name="remark">{{$order->remark}}</textarea>
+                        <textarea name="detail">{{$order->detail}}</textarea>
                     </td>
                 </tr>
                 </tbody>

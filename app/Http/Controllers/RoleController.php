@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\DB;
 class RoleController extends Controller
 {
     /**
@@ -15,41 +15,42 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role=new role();
-        $num=$role->count(); //统计总数
-        $cnt=3;
-        $max=ceil($num/$cnt); //最大值
-        $arr=range(1,$max);
-        $curr=isset($_GET['page'])?$_GET['page']:1;
-        $sname=request()->input("sname","");
-        $search1=request()->input("search",""); //查询
-        if(in_array($curr,$arr)){ //分页
-            $left=max(1,$curr-1);
-            $right=min($left+2,$max);
-            $left=max(1,$right-2);
-            $page=[];
-            for($i=$left;$i<=$right;$i++){
-                $page[$i]="page=".$i;
-            }
-            $offset=($curr-1)*$cnt;
-            if ($search1) {  //数据查询like
-                if($sname){
-                    $role = $role->Where("$sname", 'like', "%$search1%");
-                }else{
-                    return "<script>alert('请选择类型！'); location.href='/admin/role';</script>";
-                }
-            }
-            $rs = $role->offset($offset)->orderBy('id','desc')->limit($cnt)->get(); //分页显示
-            if($search1){
-                $search = "search=$search1&";
-            } else {
-                $search = "";
-            }
-            return view("admin.role.list", compact("rs", "curr", "max", "search", "search1", "page"));
-        }else{
-            return "<script>alert('已经没有页面了！'); location.href='/admin/role';</script>";
-        }
-        return view("admin.role.list");
+//        $role=new role();
+//        $num=$role->count(); //统计总数
+//        $cnt=3;
+//        $max=ceil($num/$cnt); //最大值
+//        $arr=range(1,$max);
+//        $curr=isset($_GET['page'])?$_GET['page']:1;
+//        $sname=request()->input("sname","");
+//        $search1=request()->input("search",""); //查询
+//        if(in_array($curr,$arr)){ //分页
+//            $left=max(1,$curr-1);
+//            $right=min($left+2,$max);
+//            $left=max(1,$right-2);
+//            $page=[];
+//            for($i=$left;$i<=$right;$i++){
+//                $page[$i]="page=".$i;
+//            }
+//            $offset=($curr-1)*$cnt;
+//            if ($search1) {  //数据查询like
+//                if($sname){
+//                    $role = $role->Where("$sname", 'like', "%$search1%");
+//                }else{
+//                    return "<script>alert('请选择类型！'); location.href='/admin/role';</script>";
+//                }
+//            }
+//            $rs = $role->offset($offset)->orderBy('roleorder','asc')->limit($cnt)->get(); //分页显示
+//            if($search1){
+//                $search = "search=$search1&";
+//            } else {
+//                $search = "";
+//            }
+//            return view("admin.role.list", compact("rs", "curr", "max", "search", "search1", "page"));
+//        }else{
+//            return "<script>alert('已经没有页面了！'); location.href='/admin/role';</script>";
+//        }
+         $rs=role::orderBy("roleorder","asc")->paginate(3);
+        return view("admin.role.list",compact("rs"));
     }
 
     /**
@@ -171,5 +172,24 @@ class RoleController extends Controller
         }else{
             return "false";
             }
+    }
+
+    /*
+    * 更新排序
+    */
+    public function  batchUpdate(Request $request){
+        $rs = $request->input("ids");
+        $rs = array_filter($rs);    //过滤空数组
+        $sql = "INSERT roles(id,`roleorder`) VALUES";
+        foreach ($rs as $key => $val) {
+            $sql .= "($key,$val),";
+        }
+        $sql = trim($sql, ",");
+        $sql .= " ON DUPLICATE KEY UPDATE `roleorder` = VALUES(`roleorder`);";
+        if(DB::insert($sql)){
+            return "200";
+        }else{
+            return "500";
+        }
     }
 }

@@ -8,8 +8,8 @@ Route::get('about/{id?}', "webController@about")->name('about');
 Route::get('/list', "webController@news")->name('list');
 
 Route::get('/piclist/{id?}', "webController@piclist")->name('piclist');
-
-Route::get('/products/{id?}', "webController@products")->name('products');
+Route::get('/products','ProductController@products');
+//Route::get('/products/{id?}', "webController@products")->name('products');
 Route::get('/video/{id?}',"webController@videoCourse");
 Route::get('content/{id?}', "webController@content")->name("content");
 

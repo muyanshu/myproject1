@@ -8,29 +8,29 @@
     </div>
     <!--面包屑导航 结束-->
 
-    <!--结果页快捷搜索框 开始-->
-    <div class="search_wrap">
-        <form action="/admin/role" method="post">
-            <input type="hidden" name="_method" value="get"/>
-            {{csrf_field()}}
-            <table class="search_tab">
-                <tr>
-                    <th width="120">选择类型:</th>
-                    <td>
-                            <select  name="sname">
-                                <option  value="">全部</option>
-                                <option value="name">名称</option>
-                                <option value="id">ID</option>
-                            </select>
-                    </td>
-                    <th width="70">关键字:</th>
-                    <td><input type="text" name="search" placeholder="关键字" value="{{$search1}}"></td>
-                    <td><input type="submit" class="btn btn-primary" name="sub" value="查询"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <!--结果页快捷搜索框 结束-->
+    {{--<!--结果页快捷搜索框 开始-->--}}
+    {{--<div class="search_wrap">--}}
+        {{--<form action="/admin/role" method="post">--}}
+            {{--<input type="hidden" name="_method" value="get"/>--}}
+            {{--{{csrf_field()}}--}}
+            {{--<table class="search_tab">--}}
+                {{--<tr>--}}
+                    {{--<th width="120">选择类型:</th>--}}
+                    {{--<td>--}}
+                            {{--<select  name="sname">--}}
+                                {{--<option  value="">全部</option>--}}
+                                {{--<option value="name">名称</option>--}}
+                                {{--<option value="id">ID</option>--}}
+                            {{--</select>--}}
+                    {{--</td>--}}
+                    {{--<th width="70">关键字:</th>--}}
+                    {{--<td><input type="text" name="search" placeholder="关键字" value="{{$search1}}"></td>--}}
+                    {{--<td><input type="submit" class="btn btn-primary" name="sub" value="查询"></td>--}}
+                {{--</tr>--}}
+            {{--</table>--}}
+        {{--</form>--}}
+    {{--</div>--}}
+    {{--<!--结果页快捷搜索框 结束-->--}}
 
     <!--搜索结果页面 列表 开始-->
     <form action="#" method="post">
@@ -44,7 +44,7 @@
                 <div class="short_wrap">
                     <a href="/admin/role/create"><i class="fa fa-plus"></i>新增用户组</a>
                     <a href="#" id="deleterole"><i class="fa fa-recycle"></i>批量删除</a>
-                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="#"  id="batchUpdate"><i class="fa fa-refresh"></i>更新排序</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -69,7 +69,7 @@
                         @foreach($rs as $v)
                         <td class="tc"><input type="checkbox" name="id" value="{{$v->id}}"></td>
                         <td class="tc">
-                            <input type="text" name="ord[]" value="0">
+                            <input type="text" name="ord" value="{{$v->roleorder}}">
                         </td>
                         <td class="tc">{{$v->id}}</td>
                         <td>
@@ -93,44 +93,6 @@
                     @endforeach
                     {{--结束循环--}}
                 </table>
-
-                {{--分页开始--}}
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="/admin/role?{{$search}}page=1" aria-label="Previous">
-                                <span aria-hidden="true">首页</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/role?{{$search}}page={{$curr-1}}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        @foreach($page as $k=>$v)
-                            @if($k==$curr)
-                                <li class="active"><a href="/admin/role?{{$search}}{{$v}}">{{$k}}</a></li>
-                            @else
-                                <li><a href="/admin/role?{{$search}}{{$v}}">{{$k}}</a></li>
-                            @endif
-                        @endforeach
-                        <li>
-                            <a href="/admin/role?{{$search}}page={{$curr+1}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/role?{{$search}}page={{$max}}" aria-label="Previous">
-                                <span aria-hidden="true">尾页</span>
-                            </a>
-                        </li>
-                        <li>
-                            <span aria-hidden="true">总计{{$max}}页</span>
-                        </li>
-
-                    </ul>
-                </nav>
-                {{--分页结束--}}
             </div>
         </div>
     </form>
@@ -175,6 +137,37 @@
                 }
             });
             window.location.reload();
+        }
+    });
+
+    //更新排序
+    $("#batchUpdate").click(function () {
+        var ids = [];
+        $('input[name="id"]').each(function(){
+            if($(this).prop("checked")){
+                var id = parseInt($(this).val());
+                ids[id] = $(this).parent().siblings().find("input[name='ord']").val();
+            }
+        });
+        //alert(ids);
+        if(ids.length>0){
+            //console.log(ids);
+            $.ajax({
+                url:"/admin/role/batchUpdate",
+                method:"post",
+                data:{'_token': $('input[name=_token]').val(),"ids":ids},
+                success:function (data) {
+                    //alert(data);
+                    if(data=="200"){
+                        alert("排序更新成功");
+                    }else{
+                        alert("排序更新失败");
+                    }
+                }
+            });
+            window.location.reload();
+        }else{
+            alert('请点击全选');
         }
     });
 </script>

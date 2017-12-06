@@ -82,9 +82,8 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="#"><i class="fa fa-plus"></i>新增产品</a>
-                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                    <i class="fa fa-recycle"></i><input type="button" id="delete" class="btn btn-info" value="批量删除">
+                    <i class="fa fa-refresh"></i><input type="button" id="changeorder" class="btn btn-info" value="批量更新排序">
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -94,38 +93,38 @@
             <div class="panel-body">
                 <table class="list_tab">
                     <tr>
-                        <th class="tc" width="5%"><input type="checkbox" name=""></th>
+                        <th class="tc" width="5%"><input type="checkbox" id="checkall" name=""></th>
                         <th class="tc">排序</th>
                         <th class="tc">订单ID</th>
                         <th>订购人</th>
                         <th>商品名称</th>
+                        <th>数量</th>
                         <th>总价格</th>
                         <th>状态</th>
                         <th>更新时间</th>
-                        <th>备注</th>
                         <th>操作</th>
                     </tr>
                     @foreach($rs as $v)
                         <tr>
-                            <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
+                            <td class="tc"><input type="checkbox" name="id" value="{{$v->id}}"></td>
                             <td class="tc">
-                                <input type="text" name="ord[]" value="{{$v->id}}">
+                                <input type="text" name="ord" value="{{$v->dorder}}" style="width: 30px;">
                             </td>
                             <td class="tc">{{$v->ordernumber}}</td>
                             <td>
                                 <a href="#">{{$v->username}}</a>
                             </td>
-                            <td>{{$v->product_name}}</td>
-                            <td style="color: red">{{$v->price}}元</td>
+                            <td>{{$v->pname}}</td>
+                            <td>{{$v->num}}</td>
+                            <td style="color: red">{{$v->price*$v->num}}元</td>
                             <td>
                                 @if($v->status==1)
-                                    待付款
+                                    未付款
                                 @else
                                     已付款
                                 @endif
                             </td>
                             <td>{{$v->created_at}}</td>
-                            <td>{{$v->remark}}</td>
                             <td>
                                 <a href="/admin/orderedit/{{$v->id}}">修改</a>
                                 <a class="delEvent" href="" data-toggle="modal" id="{{$v->id}}btn" data-target="#myDelModal">删除</a>
@@ -220,15 +219,45 @@
             }
         })
     })
+
+    $("#checkall").change(function () {
+        var flag=$(this).prop("checked");
+        $("input[name='id']").each(function () {
+            $(this).prop("checked",flag);
+        })
+    })
+
+    $("#changeorder").click(function () {
+        var ids=[];
+        $("input[name='id']").each(function () {
+            if($(this).prop("checked")){
+                var id=parseInt($(this).val());
+                ids[id]=parseInt($(this).parent().next().children().val());
+            }
+        })
+        console.log(ids);
+
+        if(ids.length>0){
+            $.ajax({
+                url:"/admin/obatchupdate",
+                method:"post",
+                data:{'_token': $('input[name=_token]').val(),"dt":ids},
+                success:function (data) {
+                    if(data==1){
+                        alert("排序更新成功");
+                    }else{
+                        alert("排序更新失败");
+                    }
+                }
+            });
+        }else{
+            alert("请选择");
+        }
+
+    })
 </script>
 </body>
 </html>
 
 {{--@extends("admin.base")
 @section("main")--}}
-
-
-
-{{----}}
-
-

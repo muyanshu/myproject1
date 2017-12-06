@@ -16,7 +16,7 @@ $(function(){
 		$(this).parents('.menu_box').find('li').removeClass('on');
 		$(this).addClass('on');
 	});
-})
+});
 
 //左侧点击弹开子菜单
 $(function(){
@@ -24,7 +24,7 @@ $(function(){
 	$('.menu_box').find('ul').find('li').find('h3').click(function(){
 		$(this).parent('li').find('.sub_menu').slideToggle();
 	});
-})
+});
 
 //tab面板切换
 $(function(){
@@ -55,6 +55,7 @@ function pic_minus(obj){
 	$(obj).parents('li').remove();
 }
 
+
 //删除功能
 function del(data){
 	var arr = data.split('-');
@@ -62,30 +63,24 @@ function del(data){
 	//alert(arr[1]);
 	if(confirm('删除后无法恢复，你确定要删除吗？')){
 		$.ajax({
-			url: '/admin/'+arr[0]+'/'+arr[1],
+			url: '/admin/' + arr[0] + '/' + arr[1],
 			type: "delete",
 			data: {'_token': $('input[name=_token]').val()},
 			success: function (data) {
 				//alert(data);
-				if(data=="ture"){
+				if (data == "ture") {
 					alert("删除用户成功 ");
-				}else{
+				} else {
 					alert("删除用户失败");
 				}
 			}
 		});
 		window.location.reload();
 	}
-	//日期选择器
-	$(function() {
-		$( "#datepicker" ).datepicker({
-			changeMonth: true,
-			changeYear: true
-		});
-	});
-
-
 }
+
+
+
 
 
 
