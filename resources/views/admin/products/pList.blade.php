@@ -15,13 +15,13 @@
             <tr>
                 <th width="120">选择类型:</th>
                 <td>
-                    <select  name="class_id">
+                    <select  name="course_id">
                         <option value="0">全部</option>
                         @foreach($category as $row)
-                        <option value="{{$row->id}}#0" @if(!empty($class_arr[0])) @if($row->id == $class_arr[0])selected @endif  @endif>{{$row->name}}</option>
+                        <option value="{{$row->id}}"  @if($row->id == $course_id)selected @endif >{{$row->name}}</option>
                             @if(!empty($children[$row->id]))
                                 @foreach($children[$row->id] as $v)
-                                    <option value="{{$row->id}}#{{$v->id}}"  @if(!empty($class_arr[1])) @if($v->id == $class_arr[1])selected @endif  @endif>&nbsp;&nbsp;&nbsp;&nbsp;|---- {{$v->name}}</option>
+                                    <option value="{{$v->id}}"  @if($v->id == $course_id)selected @endif >&nbsp; &nbsp; &nbsp; &nbsp;|---- {{$v->name}}</option>
                                 @endforeach
                             @endif
 
@@ -83,7 +83,7 @@
                         <a href="#">{{$v->name}}</a>
                     </td>
                     <td>{{$v->price}}</td>
-                    <td>{{App\Http\Model\ProductType::getClassName($v->course_cate)->name}}</td>
+                    <td>{{App\Http\Model\ProductType::getClassParentName($v->course_cate)->name}} -- {{App\Http\Model\ProductType::getClassName($v->course_cate)->name}}</td>
                     <td>{{App\Http\Model\ProductType::getClassName($v->class_cate)->name}}</td>
                     <td>{{$v->updated_at}}</td>
                     <td><a href="#" class="upStatus" id="{{$v->id}}status">@if($v->status == "1") 上架  @else 下架  @endif</a></td>
