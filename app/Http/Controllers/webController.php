@@ -17,15 +17,15 @@ class WebController extends Controller
     }
 //    博客新闻
     public function newslist(){
-        $news=Product::where("class_cate","=","14")->orderBy("updated_at","desc")->paginate(3);
+        $news=Product::where("class_cate","=","13")->orderBy("updated_at","desc")->paginate(3);
         return view('web.newslist',compact("news"));
     }
     //新闻详情
     public function news($id){
         $news=product::where("id","=",$id)->select()->first();
-        $pre=Product::where([["class_cate","=","14"],['id','<',$id]])->orderby("id","desc")->first(["id","name"]);
+        $pre=Product::where([["class_cate","=","13"],['id','<',$id]])->orderby("id","desc")->first(["id","name"]);
        //dd($pre);
-        $next=Product::where([["class_cate","=","14"],['id','>',$id]])->orderby("id","asc")->first(["id","name"]);
+        $next=Product::where([["class_cate","=","13"],['id','>',$id]])->orderby("id","asc")->first(["id","name"]);
         //dd($next);
         return view('web.news',compact("news","pre","next"));
     }

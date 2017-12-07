@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                        <a href="{{url("/admin")}}">点击登录后台</a>
                 </div>
             </div>
         </div>

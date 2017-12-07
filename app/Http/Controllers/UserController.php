@@ -113,7 +113,7 @@ class UserController extends Controller
         $users->nickname = $request->input("nickname","");
         $users->realname = $request->input("realname","");
         $users->qq = $request->input("qq","");
-        $users->password =md5($request->input("password")) ;
+        $users->password =bcrypt($request->input("password")) ;
         $users->save();
         return "<script>alert('添加用户成功'); location.href='/admin/user';</script>";
     }
@@ -156,7 +156,7 @@ class UserController extends Controller
             $pass=$request->input("password");
         if($pass){
             $this->validate($request,['password' => 'min:6'],['password.min' => "密码必须大于6位"]);
-            $user->password = md5("$pass");
+            $user->password = bcrypt("$pass");
         }
             //验证规则
             $this->validate($request,[
