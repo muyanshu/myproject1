@@ -49,7 +49,7 @@
         <div class="result_content">
             <table class="list_tab">
                 <tr>
-                    <th class="tc" width="60"><label style="margin-right: 0px;"><input type="checkbox"  > 全选</label></th>
+                    <th class="tc" width="60"><label style="margin-right: 0px;"><input type="checkbox" id="selectAll" > 全选</label></th>
                     <th class="tc">排序</th>
                     <th>名称</th>
                     <th>操作</th>
@@ -121,6 +121,13 @@
     })
 
 
+    //批量修改相关
+    $("#selectAll").change(function(){
+        var flag = $(this).prop("checked");
+        $('input[name="id"]').each(function(){
+            $(this).prop("checked",flag);
+        })
+    });
 
     $("#batchUpdate").click(function () {
         var ids = [];

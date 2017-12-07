@@ -26,6 +26,31 @@ class ProductType extends Model
     public static function getClassName($id){
         return self::where("id",$id)->select("name")->first();
     }
+
+
+    public static function getClassParentName($id){
+        $parentid = self::where("id",$id)->pluck('parentid');
+        if(!empty($parentid)){
+            return self::getClassName($parentid);
+        }else{
+            return false;
+        }
+    }
+
+    public static function getAll_product(){
+        $class_id = self::where("name" , "班级")->pluck('id');
+        return self::where("parentid","<>", $class_id)->where("id","<>", $class_id)->orderBy("displayorder","asc")->get(["*"]);
+    }
+    public static function getProductClass(){
+        $class_id = self::where("name" , "班级")->pluck('id');
+        if(!empty($class_id)){
+            return self::where("parentid", $class_id)->orderBy("displayorder","asc")->get(["id","name"]);
+        }else{
+            return array();
+        }
+
+    }
+
     //显示父类和子类
     public static function getAllClass(){
         $sort=self::getOneClass();  //获取父类
@@ -67,5 +92,6 @@ class ProductType extends Model
         }
         return $str;
     }
+
 
 }

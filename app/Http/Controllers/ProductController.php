@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
 
         $children  = array();
-        $category = ProductType::getAll();
+        $category = ProductType::getAll_product();
 
         foreach ($category as $index => $row){
             if (!empty($row['parentid'])) {
@@ -30,11 +30,11 @@ class ProductController extends Controller
             }
         }
 
-        $class_arr = array();
+        $course_id = "";
         $keywords = "";
 
-        if(!empty($request->input('class_id')) || !empty($request->input('keywords'))){
-            $class_id = $request->input('class_id');
+        if(!empty($request->input('course_id')) || !empty($request->input('keywords'))){
+            $course_id = $request->input('course_id');
             $keywords = $request->input('keywords');
 
             $product = Product::orderBy("displayorder","asc");
@@ -42,27 +42,15 @@ class ProductController extends Controller
                 $product = $product->where("name",'like', '%'.$keywords.'%');
             }
 
-            if(!empty($class_id)){
-                $class_arr = explode("#",$class_id);
-                if($class_arr[1]){
+            if(!empty($course_id)){
+                if(ProductType::getClassParentName($course_id)){
                     //echo "二级";
-                    $parentid = ProductType::getClass($class_arr[1])->parentid;
-                    $parent_name = ProductType::getClassName($parentid)->name;
-
-                    $zd_name = ($parent_name == "课程")?"course_cate":"class_cate";
-                    $product = $product->where($zd_name, $class_arr[1]);
-
+                    $product = $product->where("course_cate", $course_id);
 
                 }else{
                     //echo "一级";
-                    $parent_name = ProductType::getClassName($class_arr[0])->name;
-                    $parent_id = $class_arr[0];
-
-                    $class_ids = ProductType::where("parentid",$parent_id)->pluck('id');
-
-                    $zd_name = ($parent_name == "课程")?"course_cate":"class_cate";
-
-                    $product = $product->whereIn($zd_name,$class_ids);
+                    $class_ids = ProductType::getTwoClass($course_id)->pluck('id');
+                    $product = $product->whereIn("course_cate",$class_ids);
 
                 }
             }
@@ -75,7 +63,7 @@ class ProductController extends Controller
         }
 
         $rs = $product->paginate(15);
-        return view("admin.products.pList",compact("category","children","rs","class_arr","keywords"));
+        return view("admin.products.pList",compact("category","children","rs","course_id","keywords"));
 
 
     }
@@ -87,9 +75,23 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $class_1 = ProductType::getTwoClass(1);
-        $class_2 = ProductType::getTwoClass(2);
-        return view("admin.products.pAdd",compact("class_1","class_2"));
+        $class = ProductType::getProductClass();
+
+        $children  = array();
+        $category = ProductType::getAll_product();
+
+        foreach ($category as $index => $row){
+            if (!empty($row['parentid'])) {
+                $children[$row['parentid']][] = $row;
+                unset($category[$index]);
+            }
+        }
+        $oneclass_arr = ProductType::getOneClass()->pluck('id');
+        $oneclass_arr = json_decode(json_encode($oneclass_arr),TRUE);
+        $oneclass_id = implode(",",$oneclass_arr);
+
+
+        return view("admin.products.pAdd",compact("category","children","class","oneclass_id"));
     }
 
     /**
@@ -176,9 +178,21 @@ class ProductController extends Controller
     public function edit($id)
     {
         $rs = Product::getProduct($id);
-        $class_1 = ProductType::getTwoClass(1);
-        $class_2 = ProductType::getTwoClass(2);
-        return view("admin.products.pEdit",compact("rs","class_1","class_2"));
+        $class = ProductType::getProductClass();
+
+        $children  = array();
+        $category = ProductType::getAll_product();
+
+        foreach ($category as $index => $row){
+            if (!empty($row['parentid'])) {
+                $children[$row['parentid']][] = $row;
+                unset($category[$index]);
+            }
+        }
+        $oneclass_arr = ProductType::getOneClass()->pluck('id');
+        $oneclass_arr = json_decode(json_encode($oneclass_arr),TRUE);
+        $oneclass_id = implode(",",$oneclass_arr);
+        return view("admin.products.pEdit",compact("rs","category","children","class","oneclass_id"));
     }
 
     /**

@@ -34,8 +34,13 @@
                 <td>
                     <select name="course_cate">
                         <option value="">==请选择课程==</option>
-                        @foreach($class_1 as $v)
-                            <option value="{{$v->id}}">{{$v->name}}</option>
+                        @foreach($category as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                            @if(!empty($children[$row->id]))
+                                @foreach($children[$row->id] as $v)
+                                    <option value="{{$v->id}}">&nbsp; &nbsp; &nbsp; &nbsp;|---- {{$v->name}}</option>
+                                @endforeach
+                            @endif
                         @endforeach
                     </select>
                     <span style="color: red" id="course_message">@if(!empty($message_arr->course))*{{$message_arr->course}}@endif</span>
@@ -46,7 +51,7 @@
                 <td>
                     <select name="class_cate">
                         <option value="">==请选择班级==</option>
-                        @foreach($class_2 as $v)
+                        @foreach($class as $v)
                             <option value="{{$v->id}}">{{$v->name}}</option>
                         @endforeach
                     </select>
@@ -119,12 +124,27 @@
 
     UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:200});
 
+    var oneClass_arr = ('{{$oneclass_id}}').split(",");
 
     $('input[type="submit"]').click(function () {
+
+        $("#course_message").html("");
+        $("#class_message").html("");
+        $("#name_message").html("");
+        $("#pic_message").html("");
+        $("#price_message").html("");
+        $("#value_message").html("");
         var i = 0;
         if($('select[name="course_cate"]').val()==""){
             $("#course_message").html("*请选择所属课程!");
             i = 1;
+        }else{
+            for(var j=0;j<oneClass_arr.length;j++) {
+                if(oneClass_arr[j] == $('select[name="course_cate"]').val()){
+                    $("#course_message").html("*请不要选择一级分类!");
+                    i = 1;
+                }
+            }
         }
         if($('select[name="class_cate"]').val()==""){
             $("#class_message").html("*请选择所属班级!");
@@ -152,7 +172,7 @@
             i = 1;
         }
         if(isNaN($('input[name="value"]').val())){
-            $("#price_message").html("*价值必须为数字!");
+            $("#value_message").html("*价值必须为数字!");
             i = 1;
         }
         if(i == 1){
