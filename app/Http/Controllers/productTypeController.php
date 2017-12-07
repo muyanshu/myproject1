@@ -25,8 +25,6 @@ class ProductTypeController extends Controller
                 unset($category[$index]);
             }
         }
-        //dd($children);
-
         return view("admin.products.type",compact("category","children"));
     }
 

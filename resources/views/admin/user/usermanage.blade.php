@@ -78,7 +78,7 @@
                     <td><a href="#">{{$v->name}}</a></td>
                     <td>
                         @if($v->photo != '')
-                            <img src="{{url("/storage/uploads")}}/{{$v->photo}}"  hight="50px" width="50px" >
+                            <img src="{{url("/storage/uploads/$v->photo")}}"  hight="50px" width="50px" >
                         @else
                             暂无头像
                         @endif

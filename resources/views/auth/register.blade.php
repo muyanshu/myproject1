@@ -73,6 +73,20 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="code" class="col-md-4 control-label">code</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="code"   class="form-control" style="width: 100px;float: left" required >
+                               <img src="{{ URL('/register/captcha/1')}}"   name="code_confirmation" onclick="javascript:re_captcha();" alt="验证码" title="刷新图片" width="100" height="38" id="c2c98f0de5a04167a9e427d883690ff6" border="10" style="float:left;margin-left: 20px">
+                                @if ($errors->has('code'))
+                                    <span>
+                                        <strong style="color:red ">{{ $errors->first('code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -87,4 +101,12 @@
         </div>
     </div>
 </div>
+{{--验证码--}}
+<script>
+    function re_captcha() {
+        $url = "{{ URL('/register/captcha') }}";
+        $url = $url + "/" + Math.random();
+        document.getElementById('c2c98f0de5a04167a9e427d883690ff6').src=$url;
+    }
+</script>
 @endsection

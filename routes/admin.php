@@ -1,5 +1,6 @@
 <?php
-Route::group(["prefix"=>"admin"],function(){
+Route::group(["prefix"=>"admin",'middleware' => ['auth']],function(){
+
     Route::get("/","AdminController@index");
 
     //产品类型路由

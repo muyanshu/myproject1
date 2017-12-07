@@ -6,7 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Gregwar\Captcha\CaptchaBuilder;
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -47,17 +48,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'tel' => 'required|digits:11|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|between:3,32|confirmed',
+            'password' => 'required|string|between:3,16|confirmed',
+            'code'=>'code',
         ],[
+            "name.unique"=>"用户名已存在",
             "tel.digits"=>"手机号码必须是11位数字",
             "tel.unique"=>"手机号已经注册过",
-            "password.min"=>"密码3-32位之间",
+            "password.between"=>"密码3-16位之间",
+            "password.confirmed"=>"密码跟确认密码不一致",
             "email.unique"=>"邮箱已经被占用",
-
+            "email.email"=>"邮箱格式不对",
+            "code.code" =>"验证码不正确",
         ]);
     }
 
@@ -76,4 +82,26 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * 验证码生成
+     * @param  [type] $tmp [description]
+     * @return [type]      [description]
+     */
+    public function captcha($tmp)
+    {
+        //生成验证码图片的Builder对象，配置相应属性
+        $builder = new CaptchaBuilder;
+        //可以设置图片宽高及字体
+        $builder->build($width = 100, $height = 37, $font = null);
+        //获取验证码的内容
+        $phrase = $builder->getPhrase();
+        //把内容存入session
+        Session::flash('code', $phrase);
+        //生成图片
+        header("Cache-Control: no-cache, must-revalidate");
+        header('Content-Type: image/jpeg');
+        $builder->output();
+    }
+
 }

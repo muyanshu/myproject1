@@ -4,8 +4,9 @@ Route::get('/', "webController@index");
 Route::get('index', "webController@index")->name('index');
 
 Route::get('about/{id?}', "webController@about")->name('about');
-
-Route::get('/list', "webController@news")->name('list');
+//新闻
+Route::get('/list', "webController@newslist")->name('list');
+Route::get('/list/{id}', "webController@news");
 
 Route::get('/piclist/{id?}', "webController@piclist")->name('piclist');
 Route::get('/products','ProductController@products');
