@@ -44,3 +44,11 @@ INSERT INTO category VALUES ('6', '移动端布局实战专题精讲', '1', '1',
 INSERT INTO category VALUES ('7', '前端基础班', '2', '1', null, null, null, '1', '2017-11-28 15:24:17', '2017-11-28 15:24:17');
 INSERT INTO category VALUES ('8', '公开试图课', '2', '1', null, null, null, '2', '2017-11-28 15:24:34', '2017-11-28 15:24:34');
 INSERT INTO category VALUES ('9', 'PHP后台基础班', '2', '1', null, null, null, '3', '2017-11-28 15:24:58', '2017-11-28 15:24:58');
+
+CREATE TABLE `products` (
+`id` int(10) unsigned AUTO_INCREMENT,
+`name` varchar(255) NOT NULL,
+`price` decimal(10,2) NOT NULL,
+`desciption` varchar(255),
+
+)
