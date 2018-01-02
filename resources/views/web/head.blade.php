@@ -19,7 +19,7 @@
                     <li><a href="{{route('list')}}">新闻博客</a></li>
                     <li><a href='/products'>商城</a></li>
                     <li><a href="{{route('piclist')}}">图文</a></li>
-                    <li><a href="{{route('msg')}}">论坛</a></li>
+                    <li><a href="">论坛</a></li>
                     <li><a href="{{route('video')}}">视频教程</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">重难点 <span class="caret"></span></a>

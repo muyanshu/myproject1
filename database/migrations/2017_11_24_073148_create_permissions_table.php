@@ -16,7 +16,7 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string("name")->nullable()->comment("权限名称");
-            $table->tinyInteger("userorder")->default(0)->comment("排序");
+            $table->tinyInteger("porder")->default(0)->comment("排序");
             $table->string("url")->comment("访问地址");
             $table->tinyInteger("level")->default(4)->comment("权限等级增删查改这里只有只读");
             $table->integer("resource_type")->default(1)->comment("资源类型1是产品");

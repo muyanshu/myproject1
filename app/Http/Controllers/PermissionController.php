@@ -29,7 +29,7 @@ class PermissionController extends Controller
                     return "<script>alert('请选择类型！'); location.href='/admin/permission';</script>";
                 }
             }
-            $rs = $permission->orderBy('porder','desc')->get(); //显示
+            $rs = $permission->orderBy('id','desc')->get(); //显示
             return view("admin.permission.list", compact("rs","search1"));
     }
 
